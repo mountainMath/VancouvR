@@ -21,10 +21,9 @@ library(tidyverse)
 
 ## Get a list of property related datasets
 ```{r}
-l <- list_cov_datasets() %>%
+list_cov_datasets() %>%
   filter(grepl("property",title,ignore.case = TRUE)) %>%
   select(dataset_id,title)
-l
 ```
 
 
