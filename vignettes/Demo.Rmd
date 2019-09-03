@@ -1,0 +1,49 @@
+---
+title: "Demo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(VancouverOpenData)
+library(tidyverse)
+```
+
+## Get a list of property related datasets
+```{r}
+l <- list_cov_datasets() %>%
+  filter(grepl("property",title,ignore.case = TRUE)) %>%
+  select(dataset_id,title)
+l
+```
+
+
+## Get data for property tax report and property polygons
+```{r}
+tax_data <- get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year=2019")
+property_polygons <- get_cov_data(dataset_id="property-parcel-polygons",format = "geojson")
+```
+
+```{r}
+plot_data <- property_polygons %>% 
+  left_join(tax_data,by=c("tax_coord"="land_coordinate")) %>%
+  mutate(rlv=current_land_value/as.numeric(sf::st_area(geometry))) %>%
+  mutate(rlvd=cut(rlv,breaks=c(-Inf,1000,2000,3000,4000,5000,7500,10000,Inf),
+                  values=c("<$1k","$1k=$2k","$2k=$3k","$3k=$4k","$4k=$5k","$5k=$7.5k","$7.5k=$10k",">$10k"),
+                  ordered_result = TRUE))
+ggplot(plot_data) +
+  geom_sf(aes(fill=rlvd),color=NA) +
+  scale_fill_viridis_d(option="magma",na.value="darkgrey") +
+  labs(title="2019 relative land values",fill="Value per m^2",caption="CoV Open Data")
+```
+
