@@ -1,4 +1,3 @@
-
 #' Download the CoV open data catalogue
 #' @param apikey the CoV open data API key, optional
 #' @param refresh refresh cached data, default `FALSE``
@@ -8,36 +7,19 @@ list_cov_datasets <- function(apikey=getOption("VancouverOpenDataApiKey"),refres
   if (!refresh & file.exists(cache_file)) {
     result=readRDS(cache_file)
   } else {
-    url="https://opendata.vancouver.ca/api/v2/catalog/datasets?rows=100"
-    data <- NULL
-    `%|%` <- function(x,replacement) ifelse(is.null(x),replacement,x)
-    while (length(url)>0) {
-      if (!is.null(apikey)) url=paste0(url,"&apikey=",apikey)
-      result <- GET(url) %>%
-        content()
-      links <- result$links %>% lapply(as_tibble) %>% bind_rows
-      new_data <- result$datasets %>% lapply(function(ds){
-        l=ds$links %>% lapply(as_tibble) %>% bind_rows
-        d=ds$dataset
-        tibble(dataset_id=d$dataset_id,dataset_uid=d$dataset_uid %|% NA,
-               records_count=d$meta$default$records_count %|% NA,
-               title=d$meta$default$title %|% NA,
-               data_processed=d$meta$default$data_processed %|% NA,
-               publisher=d$meta$default$publisher %|% NA,
-               license=d$meta$default$license %|% NA,
-               description=d$meta$default$description %|% NA,
-               modified=d$meta$default$modified %|% NA,
-               license_url=d$meta$default$license_url %|% NA,
-               `data-team`=d$meta$custom$`data-team` %|% NA,
-               `data-owner`=d$meta$custom$`data-owner` %|% NA,
-               url=filter(l,rel=="self")$href)
-      })
-      data <- bind_rows(data,new_data)
-      url <- filter(links,rel=="next")$href
+    url="https://opendata.vancouver.ca/api/v2/catalog/exports/csv"
+    response <- GET(url)
+    if (!is.null(apikey)) url=paste0(url,"&apikey=",apikey)
+    result <- GET(url) %>%
+      content()
+    if (response$status_code!="200") {
+      warning(content(response))
+      stop(paste0("Stopping, returned status code ",response$status_code))
     }
-    saveRDS(data,cache_file)
+    result=readr::read_delim(content(response,as="text"),delim=";")
+    saveRDS(result,cache_file)
   }
-  data
+  result
 }
 
 

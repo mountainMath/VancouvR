@@ -5,11 +5,14 @@
 
 VancouverOpenData is an R wrapper around the City of Vancouver Open Data API.
 
-You can install VancouverOpenData from [GitHub](https://) with:
+You can install VancouverOpenData from [GitHub](https://github.com/mountainMath/VancouverOpenData) with:
 
 ``` r
 remotes::install_github("mountainmath/VancouverOpenData")
 ```
+
+## Reference
+[VancouverOpenData package reference](https://mountainmath.github.io/VancouverOpenData/index.html)
 
 ## Example
 
@@ -17,10 +20,10 @@ Get a list of datasets relating to properties
 
 ``` r
 library(VancouverOpenData)
-## basic example code
+
 list_cov_datasets() %>%
-  filter(grepl("property",title,ignore.case = TRUE)) %>%
-  select(dataset_id,title)
+  filter(grepl("property",default.title,ignore.case = TRUE)) %>%
+  select(dataset_id=datasetid,title=default.title)
 ```
 
 Get the first 10 records of the property tax report for 2019 tax year.

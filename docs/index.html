@@ -76,17 +76,22 @@
 <!-- badges: start -->
 <!-- badges: end -->
 <p>VancouverOpenData is an R wrapper around the City of Vancouver Open Data API.</p>
-<p>You can install VancouverOpenData from <a href="https://">GitHub</a> with:</p>
+<p>You can install VancouverOpenData from <a href="https://github.com/mountainMath/VancouverOpenData">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"mountainmath/VancouverOpenData"</span>)</a></code></pre></div>
+<div id="reference" class="section level2">
+<h2 class="hasAnchor">
+<a href="#reference" class="anchor"></a>Reference</h2>
+<p><a href="https://mountainmath.github.io/VancouverOpenData/index.html">VancouverOpenData package reference</a></p>
+</div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>Get a list of datasets relating to properties</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(VancouverOpenData)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">## basic example code</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="reference/list_cov_datasets.html">list_cov_datasets</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"property"</span>,title,<span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(dataset_id,title)</a></code></pre></div>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"property"</span>,default.title,<span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(<span class="dt">dataset_id=</span>datasetid,<span class="dt">title=</span>default.title)</a></code></pre></div>
 <p>Get the first 10 records of the property tax report for 2019 tax year.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/get_cov_data.html">get_cov_data</a></span>(<span class="dt">dataset_id =</span> <span class="st">"property-tax-report"</span>,<span class="dt">where=</span><span class="st">"tax_assessment_year=2019"</span>,<span class="dt">rows=</span><span class="dv">10</span>)</a></code></pre></div>
 </div>

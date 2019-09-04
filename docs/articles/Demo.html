@@ -94,19 +94,32 @@
 <h2 class="hasAnchor">
 <a href="#get-a-list-of-property-related-datasets" class="anchor"></a>Get a list of property related datasets</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/list_cov_datasets.html">list_cov_datasets</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"property"</span>,title,<span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(dataset_id,title)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; # A tibble: 8 x 2</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;   dataset_id                        title                            </span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;   &lt;chr&gt;                             &lt;chr&gt;                            </span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 1 property-tax-report-2006-2013     Property tax report 2006-2013    </span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 2 property-addresses                Property addresses               </span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 3 property-cadastral-boundaries     Property cadastral boundaries    </span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; 4 property-easements                Property easements               </span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; 5 property-tie-lines                Property tie lines               </span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; 6 property-tax-report               Property tax report              </span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 7 property-use-inspection-districts Property use inspection districts</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 8 property-parcel-polygons          Property parcel polygons</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"property"</span>,default.title,<span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="dt">dataset_id=</span>datasetid,<span class="dt">title=</span>default.title)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; Parsed with column specification:</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; cols(</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;   `datasetid;custom.note;custom.data-owner;custom.data-team;default.title;default.description;default.theme;default.keyword;default.license;default.license_url;default.language;default.timezone;default.modified;default.modified_updates_on_metadata_change;default.modified_updates_on_data_change;default.data_processed;default.metadata_processed;default.publisher;default.references;default.records_count;default.attributions;default.source_domain;default.source_domain_title;default.source_domain_address;default.source_dataset;default.federated;default.oauth_scope;default.parent_domain;dcat.created;dcat.issued;dcat.creator;dcat.contributor;dcat.contact_name;dcat.contact_email;dcat.accrualperiodicity;dcat.spatial;dcat.temporal;dcat.granularity;dcat.dataquality` = col_character()</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; )</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; Warning: 1304 parsing failures.</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; row col  expected    actual         file</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;   1  -- 1 columns 4 columns &lt;raw vector&gt;</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  11  -- 1 columns 2 columns &lt;raw vector&gt;</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  12  -- 1 columns 3 columns &lt;raw vector&gt;</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  16  -- 1 columns 3 columns &lt;raw vector&gt;</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  17  -- 1 columns 3 columns &lt;raw vector&gt;</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; ... ... ......... ......... ............</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; See problems(...) for more details.</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; # A tibble: 8 x 2</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;   dataset_id                        title                            </span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt;   &lt;chr&gt;                             &lt;chr&gt;                            </span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; 1 property-tax-report-2006-2013     Property tax report 2006-2013    </span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; 2 property-tie-lines                Property tie lines               </span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; 3 property-easements                Property easements               </span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; 4 property-cadastral-boundaries     Property cadastral boundaries    </span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; 5 property-tax-report               Property tax report              </span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; 6 property-addresses                Property addresses               </span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt; 7 property-use-inspection-districts Property use inspection districts</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; 8 property-parcel-polygons          Property parcel polygons</span></a></code></pre></div>
 </div>
 <div id="get-data-for-property-tax-report-and-property-polygons" class="section level2">
 <h2 class="hasAnchor">
