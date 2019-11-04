@@ -1,5 +1,7 @@
 ---
 title: "Demo"
+author: "" 
+date: ""
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Demo}
@@ -7,14 +9,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-```{r setup}
+```{r}
 library(VancouverOpenData)
 library(dplyr)
 library(ggplot2)
