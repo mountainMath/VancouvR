@@ -3,3 +3,20 @@ cache: packages
 sudo: false
 latex: false
 pandoc: false
+
+r:
+  - release
+
+# Binary versions of packages to reduce build time.
+r_binary_packages:
+  - dplyr
+  - markdown
+  - readr
+  - httr
+  - purrr,
+  - rlang,
+  - rvest
+  - tibble
+  - sf
+  - tidyr
+  - ggplot2
