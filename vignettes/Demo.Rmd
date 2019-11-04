@@ -39,7 +39,7 @@ plot_data <- property_polygons %>%
   left_join(tax_data,by=c("tax_coord"="land_coordinate")) %>%
   mutate(rlv=current_land_value/as.numeric(sf::st_area(geometry))) %>%
   mutate(rlvd=cut(rlv,breaks=c(-Inf,1000,2000,3000,4000,5000,7500,10000,Inf),
-                  labels=c("<$1k","$1k=$2k","$2k=$3k","$3k=$4k","$4k=$5k","$5k=$7.5k","$7.5k=$10k",">$10k"),
+                  labels=c("<$1k","$1k-$2k","$2k-$3k","$3k-$4k","$4k-$5k","$5k-$7.5k","$7.5k-$10k",">$10k"),
                   ordered_result = TRUE))
 ggplot(plot_data) +
   geom_sf(aes(fill=rlvd),color=NA) +
