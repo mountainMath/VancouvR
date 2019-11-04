@@ -1,16 +1,24 @@
 Package: VancouverOpenData
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Access The City of Vancouver Open Data API
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Jens von Bergmann
+Maintainer: Jens von Bergmann <jens@mountainmath.ca>
+Description: Wrapper around the City of Vancouver Open Data API. Functionality to list the data catalogue and access data and geographic records.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Imports: 
+    dplyr, 
+    httr, 
+    purrr, 
+    rlang, 
+    rvest, 
+    tibble,
+    sf  
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    ggplot2
 VignetteBuilder: knitr

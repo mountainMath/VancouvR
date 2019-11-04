@@ -16,7 +16,8 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(VancouverOpenData)
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 ```
 
 ## Get a list of property related datasets

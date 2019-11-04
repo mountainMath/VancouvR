@@ -1,6 +1,7 @@
 # VancouverOpenData
 
 <!-- badges: start -->
+[![Build Status](https://travis-ci.org/mountainMath/VancouverOpenData.svg?branch=master)](https://travis-ci.org/mountainMath/VancouverOpenData)
 <!-- badges: end -->
 
 VancouverOpenData is an R wrapper around the City of Vancouver Open Data API.
