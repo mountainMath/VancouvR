@@ -13,7 +13,8 @@ Imports:
     dplyr, 
     httr, 
     purrr, 
-    rlang, 
+    rlang,
+    urltools,
     rvest, 
     tibble,
     sf  
