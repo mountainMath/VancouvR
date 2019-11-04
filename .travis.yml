@@ -17,6 +17,9 @@ before_install:
 r_binary_packages:
   - dplyr
   - markdown
+  - units
+  - digest
+  - indices
   - readr
   - httr
   - purrr

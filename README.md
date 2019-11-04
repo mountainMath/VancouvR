@@ -24,7 +24,7 @@ library(VancouverOpenData)
 
 list_cov_datasets() %>%
   filter(grepl("property",default.title,ignore.case = TRUE)) %>%
-  select(dataset_id=datasetid,title=default.title)
+  select(dataset_id,title)
 ```
 
 Get the first 10 records of the property tax report for 2019 tax year.

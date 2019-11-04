@@ -25,14 +25,15 @@ library(ggplot2)
 ## Get a list of property related datasets
 ```{r}
 list_cov_datasets() %>%
-  filter(grepl("property",default.title,ignore.case = TRUE)) %>%
-  select(dataset_id=datasetid,title=default.title)
+  filter(grepl("property",title,ignore.case = TRUE)) %>%
+  select(dataset_id,title)
 ```
 
 
 ## Get data for property tax report and property polygons
 ```{r}
-tax_data <- get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year=2019")
+tax_data <- get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year=2019") %>%
+  mutate_at(c("current_land_value","current_improvement_value"),as.numeric)
 property_polygons <- get_cov_data(dataset_id="property-parcel-polygons",format = "geojson")
 ```
 

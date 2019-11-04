@@ -16,7 +16,8 @@ list_cov_datasets <- function(apikey=getOption("VancouverOpenDataApiKey"),refres
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))
     }
-    result=readr::read_delim(content(response,as="text"),delim=";")
+    result=readr::read_delim(content(response,as="text"),delim=";",col_types = readr::cols(.default="c")) %>%
+      mutate(title=.data$default.title,dataset_id=.data$datasetid)
     saveRDS(result,cache_file)
   }
   result
@@ -24,13 +25,13 @@ list_cov_datasets <- function(apikey=getOption("VancouverOpenDataApiKey"),refres
 
 
 #' Get datasets from Vancouver Open Data Portal
-#' @export
 #' @param dataset_id Dataset id from the Vancouver Open Data catalogue
 #' @param format `csv` or `geojson` are supported at this time (default `csv`)
 #' @param where Query parameter to filter data (default `NULL` no filter)
 #' @param apikey Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`
 #' @param rows Maximum number of rows to return (default `NULL` returns all rows)
 #' @param refresh refresh cached data, default `FALSE``
+#' @export
 get_cov_data <- function(dataset_id,format=c("csv","geojson"),where=NULL,apikey=getOption("VancouverOpenDataApiKey"),rows=NULL,refresh=FALSE) {
   format=format[1]
   marker=digest::digest(paste0(c(dataset_id,format,where,rows),collapse = "_"), algo = "md5")
@@ -51,7 +52,7 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),where=NULL,apikey=
       stop(paste0("Stopping, returned status code ",response$status_code))
     }
     if (format=="csv")
-      result=readr::read_delim(content(response,as="text"),delim=";")
+      result=readr::read_delim(content(response,as="text"),delim=";",col_types = readr::cols(.default="c"))
     else if (format=="geojson") {
       result=sf::read_sf(content(response,as="text"))
     }
@@ -63,15 +64,6 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),where=NULL,apikey=
 
 #' @import dplyr
 #' @import httr
-#' @importFrom tibble as_tibble
-#' @importFrom rvest html_node
-#' @importFrom rvest html_nodes
-#' @importFrom rvest html_text
 #' @importFrom rlang .data
-#' @importFrom stats na.omit
-#' @importFrom rlang set_names
-#' @importFrom rlang .data
-#' @importFrom purrr map
-#' @importFrom rlang :=
 
 NULL
