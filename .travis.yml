@@ -13,8 +13,8 @@ r_binary_packages:
   - markdown
   - readr
   - httr
-  - purrr,
-  - rlang,
+  - purrr
+  - rlang
   - rvest
   - tibble
   - sf
