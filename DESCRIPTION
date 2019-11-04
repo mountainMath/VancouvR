@@ -15,7 +15,8 @@ Imports:
     purrr, 
     rlang,
     urltools,
-    rvest, 
+    rvest,
+    readr,
     tibble,
     sf  
 Suggests: 
