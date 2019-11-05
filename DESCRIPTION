@@ -1,4 +1,4 @@
-Package: VancouverOpenData
+Package: VancouvR
 Type: Package
 Title: Access The City of Vancouver Open Data API
 Version: 0.1.0

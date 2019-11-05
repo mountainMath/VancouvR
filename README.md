@@ -1,26 +1,26 @@
-# VancouverOpenData
+# VancouvR
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.org/mountainMath/VancouverOpenData.svg?branch=master)](https://travis-ci.org/mountainMath/VancouverOpenData)
+[![Build Status](https://travis-ci.org/mountainMath/VancouvR.svg?branch=master)](https://travis-ci.org/mountainMath/VancouvR)
 <!-- badges: end -->
 
 VancouverOpenData is an R wrapper around the City of Vancouver Open Data API.
 
-You can install VancouverOpenData from [GitHub](https://github.com/mountainMath/VancouverOpenData) with:
+You can install VancouverOpenData from [GitHub](https://github.com/mountainMath/VancouvR) with:
 
 ``` r
-remotes::install_github("mountainmath/VancouverOpenData")
+remotes::install_github("mountainmath/VancouvR")
 ```
 
 ## Reference
-[VancouverOpenData package reference](https://mountainmath.github.io/VancouverOpenData/index.html)
+[VancouverOpenData package reference](https://mountainmath.github.io/VancouvR/index.html)
 
 ## Example
 
 Get a list of datasets relating to properties
 
 ``` r
-library(VancouverOpenData)
+library(VancouvR)
 
 list_cov_datasets() %>%
   filter(grepl("property",default.title,ignore.case = TRUE)) %>%

@@ -8,3 +8,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+R/hex_sticker.R
+images
+images/*
+card_fix.sh

@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-library(VancouverOpenData)
+library(VancouvR)
 library(dplyr)
 library(ggplot2)
 ```
