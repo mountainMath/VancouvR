@@ -5,3 +5,15 @@
 inst/doc
 doc
 Meta
+^LICENSE\.md$
+^CRAN-RELEASE$
+^.*\.Rproj$
+^\.Rproj\.user$
+^docs
+^pkgdown
+.travis.yml
+cran-comments.md
+R/hex_sticker.R
+images
+images/*
+fix_meta.sh

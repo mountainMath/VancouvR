@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mountainmath.github.io/VancouvR/index.html/index.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR//index.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR/index.html/reference/get_cov_data.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR//reference/get_cov_data.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR/index.html/reference/list_cov_datasets.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR//reference/list_cov_datasets.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR/index.html/articles/Demo.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR//articles/Demo.html</loc>
   </url>
 </urlset>
