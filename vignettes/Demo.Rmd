@@ -1,7 +1,7 @@
 ---
 title: "Demo"
-author: "" 
-date: ""
+author: "Jens von Bergmann" 
+date: "2019-11-04"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Demo}
@@ -22,7 +22,7 @@ library(dplyr)
 library(ggplot2)
 ```
 
-## Get a list of property related datasets
+### Get a list of property related datasets
 ```{r}
 list_cov_datasets() %>%
   filter(grepl("property",title,ignore.case = TRUE)) %>%
@@ -30,13 +30,14 @@ list_cov_datasets() %>%
 ```
 
 
-## Get data for property tax report and property polygons
+### Get data for property tax report and property polygons
 ```{r}
 tax_data <- get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year=2019") %>%
   mutate_at(c("current_land_value","current_improvement_value"),as.numeric)
 property_polygons <- get_cov_data(dataset_id="property-parcel-polygons",format = "geojson")
 ```
 
+### Compute and plot relative land values
 ```{r}
 plot_data <- property_polygons %>% 
   left_join(tax_data,by=c("tax_coord"="land_coordinate")) %>%

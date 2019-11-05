@@ -6,14 +6,16 @@
 
 <a href="https://mountainmath.github.io/VancouvR/index.html"><img src="https://raw.githubusercontent.com/mountainMath/VancouvR/master/images/VancouvR-sticker.png" alt="VancouvR logo" align="right" width = "25%" height = "25%"/></a>
 
-VancouverOpenData is an R wrapper around the City of Vancouver Open Data API. It allows transparent and reproducible access to the Vancouver Open Data Portal to facilitate data analysis and sharing of code.
+`VancouvR` is an R wrapper around the City of Vancouver Open Data API. It allows transparent and reproducible access to the Vancouver Open Data Portal to facilitate data analysis and sharing of code.
+
+The package caches downloaded data for the duration of the current session, so re-running code blocks will not result in repeated downloads. This speeds up the code, cuts down on unnecessary network traffic and reduces strain on the City of Vancouver Open Data infrastructure.
 
 
 ### Reference
 [VancouverOpenData package reference](https://mountainmath.github.io/VancouvR/index.html)
 
 ### Installing the package
-You can install VancouverOpenData from [GitHub](https://github.com/mountainMath/VancouvR) with:
+You can install `VancouvR` from [GitHub](https://github.com/mountainMath/VancouvR) with:
 
 ``` r
 remotes::install_github("mountainmath/VancouvR")
