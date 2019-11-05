@@ -24,53 +24,6 @@ generate_cansim_hex_sticker <- function (){
 
   park_parcels <- parcels %>% filter(sf::st_intersects(.,parks %>% sf::st_union(),sparse=FALSE) %>% unlist)
 
-  bbox <- sf::read_sf('{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.387908935546875,
-          6.458257931949705
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -123.16738128662111,
-              49.231723108823424
-            ],
-            [
-              -123.0743408203125,
-              49.231723108823424
-            ],
-            [
-              -123.0743408203125,
-              49.29938216794409
-            ],
-            [
-              -123.16738128662111,
-              49.29938216794409
-            ],
-            [
-              -123.16738128662111,
-              49.231723108823424
-            ]
-          ]
-        ]
-      }
-    }
-  ]
-}')
 
   pp <- ggplot() +
     #geom_sf(aes(color=Type),fill=NA,size=0.001,shape=16) +
@@ -81,7 +34,7 @@ generate_cansim_hex_sticker <- function (){
     geom_sf(data=park_parcels,color=NA,fill="#116611") +
     #scale_color_manual(values=tree_colors,guide=FALSE) +
     #theme(panel.background = element_rect(fill = "black")) +
-    coord_sf(datum=NA,xlim=c(-123.157,-123.075),ylim=c(49.231,49.299)) +
+    coord_sf(datum=NA,xlim=c(-123.17,-123.06),ylim=c(49.23,49.31)) +
     theme_void() +
     hexSticker::theme_transparent()
 
