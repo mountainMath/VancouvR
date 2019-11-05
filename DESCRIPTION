@@ -9,6 +9,7 @@ Description: Wrapper around the City of Vancouver Open Data API to simplify and 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+NeedsCompilation: no
 RoxygenNote: 6.1.1
 Imports: 
     dplyr, 
@@ -24,3 +25,5 @@ Suggests:
     ggplot2,
     lwgeom
 VignetteBuilder: knitr
+URL: https://github.com/mountainMath/VancouvR, https://mountainmath.github.io/VancouvR/
+BugReports: https://github.com/mountainMath/VancouvR/issues

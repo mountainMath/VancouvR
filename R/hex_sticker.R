@@ -72,15 +72,14 @@ generate_cansim_hex_sticker <- function (){
   ]
 }')
 
-  pp <- ggplot(tree_data  %>% sf::st_intersection(bbox)) +
+  pp <- ggplot() +
     #geom_sf(aes(color=Type),fill=NA,size=0.001,shape=16) +
     #geom_sf(aes(fill=Type),color=NA,size=0.0001,shape=19) +
     geom_sf(data=street_data,size=0.1,color="#888888") +
     geom_sf(data=greenways,size=0.5,color="#228822") +
     geom_sf(data=bikeways,size=0.25,color="#228822") +
     geom_sf(data=park_parcels,color=NA,fill="#116611") +
-    scale_color_manual(values=tree_colors,guide=FALSE) +
-    scale_fill_manual(values=tree_colors,guide=FALSE) +
+    #scale_color_manual(values=tree_colors,guide=FALSE) +
     #theme(panel.background = element_rect(fill = "black")) +
     coord_sf(datum=NA,xlim=c(-123.157,-123.075),ylim=c(49.231,49.299)) +
     theme_void() +

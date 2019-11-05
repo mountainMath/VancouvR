@@ -3,4 +3,7 @@ pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   Demo: Demo.html
+urls:
+  reference: https://mountainmath.github.io/VancouvR/index.html/reference
+  article: https://mountainmath.github.io/VancouvR/index.html/articles
 
