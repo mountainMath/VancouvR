@@ -12,3 +12,4 @@ R/hex_sticker.R
 images
 images/*
 card_fix.sh
+^CRAN-RELEASE$

@@ -16,7 +16,7 @@ list_cov_datasets <- function(apikey=getOption("VancouverOpenDataApiKey"),refres
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))
     }
-    result=readr::read_delim(content(response,as="text"),delim=";",col_types = readr::cols(.default="c")) %>%
+    result=read_delim(content(response,as="text"),delim=";",col_types = cols(.default="c")) %>%
       mutate(title=.data$default.title,dataset_id=.data$datasetid)
     saveRDS(result,cache_file)
   }
@@ -34,7 +34,7 @@ list_cov_datasets <- function(apikey=getOption("VancouverOpenDataApiKey"),refres
 #' @export
 get_cov_data <- function(dataset_id,format=c("csv","geojson"),where=NULL,apikey=getOption("VancouverOpenDataApiKey"),rows=NULL,refresh=FALSE) {
   format=format[1]
-  marker=digest::digest(paste0(c(dataset_id,format,where,rows),collapse = "_"), algo = "md5")
+  marker=digest(paste0(c(dataset_id,format,where,rows),collapse = "_"), algo = "md5")
   cache_file <- file.path(tempdir(),paste0("CoV_data_",marker, ".rda"))
   if (!refresh & file.exists(cache_file)) {
     message("Reading data from temporary cache")
@@ -43,18 +43,18 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),where=NULL,apikey=
     message("Downloading data from CoV Open Data portal")
     #url=paste0("https://opendata.vancouver.ca/api/records/1.0/download?dataset=",dataset_id,"&format=",format)
     url=paste0("https://opendata.vancouver.ca/api/v2/catalog/datasets/",dataset_id,"/exports/",format)
-    if (!is.null(where)) url <- urltools::param_set(url,"where",urltools::url_encode(where))
-    if (!is.null(apikey)) url <- urltools::param_set(url,"apikey",apikey)
-    if (!is.null(rows)) url <- urltools::param_set(url,"rows",rows)
+    if (!is.null(where)) url <- param_set(url,"where",url_encode(where))
+    if (!is.null(apikey)) url <- param_set(url,"apikey",apikey)
+    if (!is.null(rows)) url <- param_set(url,"rows",rows)
     response <- GET(url)
     if (response$status_code!="200") {
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))
     }
     if (format=="csv")
-      result=readr::read_delim(content(response,as="text"),delim=";",col_types = readr::cols(.default="c"))
+      result=read_delim(content(response,as="text"),delim=";",col_types = cols(.default="c"))
     else if (format=="geojson") {
-      result=sf::read_sf(content(response,as="text"))
+      result=read_sf(content(response,as="text"))
     }
     saveRDS(result,cache_file)
   }
@@ -65,5 +65,10 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),where=NULL,apikey=
 #' @import dplyr
 #' @import httr
 #' @importFrom rlang .data
+#' @importFrom sf read_sf
+#' @importFrom readr read_delim
+#' @importFrom readr cols
+#' @importFrom digest digest
+#' @import urltools
 
 NULL

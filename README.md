@@ -3,9 +3,10 @@
 <!-- badges: start -->
 [![Build Status](https://travis-ci.org/mountainMath/VancouvR.svg?branch=master)](https://travis-ci.org/mountainMath/VancouvR)
 <!-- badges: end -->
+
 <a href="https://mountainmath.github.io/VancouvR/index.html"><img src="https://raw.githubusercontent.com/mountainMath/VancouvR/master/images/VancouvR-sticker.png" alt="VancouvR logo" align="right" width = "25%" height = "25%"/></a>
 
-VancouverOpenData is an R wrapper around the City of Vancouver Open Data API.
+VancouverOpenData is an R wrapper around the City of Vancouver Open Data API. It allows transparent and reproducible access to the Vancouver Open Data Portal to facilitate data analysis and sharing of code.
 
 
 ### Reference
