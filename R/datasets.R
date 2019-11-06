@@ -2,6 +2,15 @@
 #' @param apikey the CoV open data API key, optional
 #' @param refresh refresh cached data, default `FALSE``
 #' @export
+#'
+#' @examples
+#' # List and search available datasets
+#' \dontrun{
+#' list_cov_datasets() %>%
+#'   filter(grepl("property",title,ignore.case = TRUE)) %>%
+#'   select(dataset_id,title)
+#'}
+#'
 list_cov_datasets <- function(apikey=getOption("VancouverOpenDataApiKey"),refresh=FALSE){
   cache_file <- file.path(tempdir(),paste0("CoV_data_catalog.rda"))
   if (!refresh & file.exists(cache_file)) {
@@ -32,6 +41,13 @@ list_cov_datasets <- function(apikey=getOption("VancouverOpenDataApiKey"),refres
 #' @param rows Maximum number of rows to return (default `NULL` returns all rows)
 #' @param refresh refresh cached data, default `FALSE``
 #' @export
+#'
+#' @examples
+#' # Get all parking tickets issued at the 1100 block of Alberni Street between 2017 and 2019
+#' \dontrun{
+#' get_cov_data("parking-tickets-2017-2019",where = "block = 1100 AND street = 'ALBERNI ST'")
+#'}
+#'
 get_cov_data <- function(dataset_id,format=c("csv","geojson"),where=NULL,apikey=getOption("VancouverOpenDataApiKey"),rows=NULL,refresh=FALSE) {
   format=format[1]
   marker=digest(paste0(c(dataset_id,format,where,rows),collapse = "_"), algo = "md5")

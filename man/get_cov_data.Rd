@@ -24,3 +24,10 @@ get_cov_data(dataset_id, format = c("csv", "geojson"), where = NULL,
 \description{
 Get datasets from Vancouver Open Data Portal
 }
+\examples{
+# Get all parking tickets issued at the 1100 block of Alberni Street between 2017 and 2019
+\dontrun{
+get_cov_data("parking-tickets-2017-2019",where = "block = 1100 AND street = 'ALBERNI ST'")
+}
+
+}

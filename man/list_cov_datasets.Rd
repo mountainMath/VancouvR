@@ -15,3 +15,12 @@ list_cov_datasets(apikey = getOption("VancouverOpenDataApiKey"),
 \description{
 Download the CoV open data catalogue
 }
+\examples{
+# List and search available datasets
+\dontrun{
+list_cov_datasets() \%>\%
+  filter(grepl("property",title,ignore.case = TRUE)) \%>\%
+  select(dataset_id,title)
+}
+
+}
