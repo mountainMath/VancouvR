@@ -138,9 +138,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_cov_data</span>(<span class='no'>dataset_id</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"csv"</span>, <span class='st'>"geojson"</span>), <span class='kw'>where</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>apikey</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"VancouverOpenDataApiKey"</span>), <span class='kw'>rows</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>refresh</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_cov_data</span>(<span class='no'>dataset_id</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"csv"</span>, <span class='st'>"geojson"</span>), <span class='kw'>select</span> <span class='kw'>=</span> <span class='st'>"*"</span>,
+  <span class='kw'>where</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>apikey</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"VancouverOpenDataApiKey"</span>),
+  <span class='kw'>rows</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cast_types</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>refresh</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,6 +152,10 @@
     <tr>
       <th>format</th>
       <td><p>`csv` or `geojson` are supported at this time (default `csv`)</p></td>
+    </tr>
+    <tr>
+      <th>select</th>
+      <td><p>select string for fields to return, returns all fields by default</p></td>
     </tr>
     <tr>
       <th>where</th>
@@ -166,10 +170,18 @@
       <td><p>Maximum number of rows to return (default `NULL` returns all rows)</p></td>
     </tr>
     <tr>
+      <th>cast_types</th>
+      <td><p>Logical, use metadata to look up types and type-cast automatically, default `TRUE`</p></td>
+    </tr>
+    <tr>
       <th>refresh</th>
       <td><p>refresh cached data, default `FALSE``</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>tibble or sf object data table output, depending on the value of the `format` parameter</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -182,7 +194,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

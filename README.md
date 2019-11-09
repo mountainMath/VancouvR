@@ -31,14 +31,23 @@ Get a list of datasets relating to properties
 ``` r
 library(VancouvR)
 
-list_cov_datasets() %>%
-  filter(grepl("property",default.title,ignore.case = TRUE)) %>%
-  select(dataset_id,title)
+search_cov_datasets("properties")
 ```
 
 Get the first 10 records of the property tax report for 2019 tax year.
 
 ``` r
 get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year=2019",rows=10)
+```
+
+Get metadata for the street trees dataset.
+``` r
+get_cov_metadata("street-trees")
+```
+
+Count the number of cherry trees by neighbourhood.
+
+``` r
+aggregate_cov_data("street-trees",where = "common_name LIKE 'CHERRY'", group_by = "neighbourhood_name")
 ```
 

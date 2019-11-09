@@ -18,12 +18,15 @@ Imports:
     urltools,
     readr,
     digest,
-    sf  
+    sf,
+    tibble,
+    purrr
 Suggests: 
     knitr,
     rmarkdown,
     ggplot2,
-    lwgeom
+    lwgeom,
+    tidyr
 VignetteBuilder: knitr
 URL: https://github.com/mountainMath/VancouvR, https://mountainmath.github.io/VancouvR/
 BugReports: https://github.com/mountainMath/VancouvR/issues

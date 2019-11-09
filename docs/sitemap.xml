@@ -4,10 +4,19 @@
     <loc>https://mountainmath.github.io/VancouvR//index.html</loc>
   </url>
   <url>
+    <loc>https://mountainmath.github.io/VancouvR//reference/aggregate_cov_data.html</loc>
+  </url>
+  <url>
     <loc>https://mountainmath.github.io/VancouvR//reference/get_cov_data.html</loc>
   </url>
   <url>
+    <loc>https://mountainmath.github.io/VancouvR//reference/get_cov_metadata.html</loc>
+  </url>
+  <url>
     <loc>https://mountainmath.github.io/VancouvR//reference/list_cov_datasets.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR//reference/search_cov_datasets.html</loc>
   </url>
   <url>
     <loc>https://mountainmath.github.io/VancouvR//articles/Demo.html</loc>

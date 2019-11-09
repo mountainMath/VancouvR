@@ -4,14 +4,16 @@
 \alias{get_cov_data}
 \title{Get datasets from Vancouver Open Data Portal}
 \usage{
-get_cov_data(dataset_id, format = c("csv", "geojson"), where = NULL,
-  apikey = getOption("VancouverOpenDataApiKey"), rows = NULL,
-  refresh = FALSE)
+get_cov_data(dataset_id, format = c("csv", "geojson"), select = "*",
+  where = NULL, apikey = getOption("VancouverOpenDataApiKey"),
+  rows = NULL, cast_types = TRUE, refresh = FALSE)
 }
 \arguments{
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}
 
 \item{format}{`csv` or `geojson` are supported at this time (default `csv`)}
+
+\item{select}{select string for fields to return, returns all fields by default}
 
 \item{where}{Query parameter to filter data (default `NULL` no filter)}
 
@@ -19,7 +21,12 @@ get_cov_data(dataset_id, format = c("csv", "geojson"), where = NULL,
 
 \item{rows}{Maximum number of rows to return (default `NULL` returns all rows)}
 
+\item{cast_types}{Logical, use metadata to look up types and type-cast automatically, default `TRUE`}
+
 \item{refresh}{refresh cached data, default `FALSE``}
+}
+\value{
+tibble or sf object data table output, depending on the value of the `format` parameter
 }
 \description{
 Get datasets from Vancouver Open Data Portal

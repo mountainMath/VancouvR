@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download the CoV open data catalogue — list_cov_datasets • VancouvR</title>
+<title>Get aggregates from dataset from Vancouver Open Data Portal — aggregate_cov_data • VancouvR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Download the CoV open data catalogue — list_cov_datasets" />
+<meta property="og:title" content="Get aggregates from dataset from Vancouver Open Data Portal — aggregate_cov_data" />
 
-<meta property="og:description" content="Download the CoV open data catalogue" />
+<meta property="og:description" content="Get aggregates from dataset from Vancouver Open Data Portal" />
 
 <meta property="og:image" content="https://mountainmath.github.io/VancouvR/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -127,30 +127,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download the CoV open data catalogue</h1>
+    <h1>Get aggregates from dataset from Vancouver Open Data Portal</h1>
     <small class="dont-index">Source: <a href='https://github.com/mountainMath/VancouvR/blob/master/R/datasets.R'><code>R/datasets.R</code></a></small>
-    <div class="hidden name"><code>list_cov_datasets.Rd</code></div>
+    <div class="hidden name"><code>aggregate_cov_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Download the CoV open data catalogue</p>
+    <p>Get aggregates from dataset from Vancouver Open Data Portal</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>list_cov_datasets</span>(<span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <pre class="usage"><span class='fu'>aggregate_cov_data</span>(<span class='no'>dataset_id</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='st'>"count(*) as count"</span>,
+  <span class='kw'>group_by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>where</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>apikey</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"VancouverOpenDataApiKey"</span>), <span class='kw'>refresh</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>trim</th>
-      <td><p>trim all NA columns, optional, defaul `TRUE`</p></td>
+      <th>dataset_id</th>
+      <td><p>Dataset id from the Vancouver Open Data catalogue</p></td>
+    </tr>
+    <tr>
+      <th>select</th>
+      <td><p>select string for aggregation, default is `count(*) as count`</p></td>
+    </tr>
+    <tr>
+      <th>group_by</th>
+      <td><p>grouping variables for the query</p></td>
+    </tr>
+    <tr>
+      <th>where</th>
+      <td><p>Query parameter to filter data (default `NULL` no filter)</p></td>
     </tr>
     <tr>
       <th>apikey</th>
-      <td><p>the CoV open data API key, optional</p></td>
+      <td><p>Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`</p></td>
     </tr>
     <tr>
       <th>refresh</th>
@@ -164,11 +177,11 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># List and search available datasets</span>
+    <pre class="examples"><div class='input'><span class='co'># Count all issued parking tickets that relate to fire hydrants</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>list_cov_datasets</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span>(<span class='st'>"property"</span>,<span class='no'>title</span>,<span class='kw'>ignore.case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>select</span>(<span class='no'>dataset_id</span>,<span class='no'>title</span>)
+<span class='fu'>aggregate_cov_data</span>(<span class='st'>"parking-tickets-2017-2019"</span>,
+                   <span class='kw'>group_by</span> <span class='kw'>=</span> <span class='st'>"status"</span>,
+                   <span class='kw'>where</span> <span class='kw'>=</span> <span class='st'>"infractiontext LIKE 'FIRE'"</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
