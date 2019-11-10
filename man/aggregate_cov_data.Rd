@@ -11,11 +11,14 @@ aggregate_cov_data(dataset_id, select = "count(*) as count",
 \arguments{
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}
 
-\item{select}{select string for aggregation, default is `count(*) as count`}
+\item{select}{select string for aggregation, default is `count(*) as count`
+It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.}
 
-\item{group_by}{grouping variables for the query}
+\item{group_by}{grouping variables for the query
+It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#group-by-clause}{ODSQL syntax}.}
 
-\item{where}{Query parameter to filter data (default `NULL` no filter)}
+\item{where}{Query parameter to filter data (default `NULL` no filter)
+It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.}
 
 \item{apikey}{Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`}
 
@@ -29,10 +32,8 @@ Get aggregates from dataset from Vancouver Open Data Portal
 }
 \examples{
 # Count all parking tickets that relate to fire hydrants by ticket status
-\dontrun{
 aggregate_cov_data("parking-tickets-2017-2019",
                    group_by = "status",
                    where = "infractiontext LIKE 'FIRE'")
-}
 
 }

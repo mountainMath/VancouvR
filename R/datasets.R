@@ -7,11 +7,7 @@
 #'
 #' @examples
 #' # List and search available datasets
-#' \dontrun{
-#' list_cov_datasets() %>%
-#'   filter(grepl("property",title,ignore.case = TRUE)) %>%
-#'   select(dataset_id,title)
-#'}
+#' list_cov_datasets()
 #'
 list_cov_datasets <- function(trim = TRUE, apikey=getOption("VancouverOpenDataApiKey"),refresh=FALSE){
   cache_file <- file.path(tempdir(),paste0("CoV_data_catalog.rda"))
@@ -46,9 +42,7 @@ list_cov_datasets <- function(trim = TRUE, apikey=getOption("VancouverOpenDataAp
 #'
 #' @examples
 #' # search available datasets relating to trees
-#' \dontrun{
 #' search_cov_datasets("trees")
-#'}
 #'
 search_cov_datasets <- function(search_term, trim=TRUE, apikey=getOption("VancouverOpenDataApiKey"),refresh=FALSE){
   datasets <- list_cov_datasets(trim=FALSE,apikey = apikey,refresh = refresh)
@@ -81,9 +75,7 @@ search_cov_datasets <- function(search_term, trim=TRUE, apikey=getOption("Vancou
 #'
 #' @examples
 #' # Get the metadata for the street trees dataset
-#' \dontrun{
 #' get_cov_metadata("street-trees")
-#'}
 #'
 get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKey"),refresh=FALSE){
   cache_file <- file.path(tempdir(),paste0("CoV_metadata_,",dataset_id,".rda"))
@@ -117,7 +109,9 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
 #' @param dataset_id Dataset id from the Vancouver Open Data catalogue
 #' @param format `csv` or `geojson` are supported at this time (default `csv`)
 #' @param where Query parameter to filter data (default `NULL` no filter)
-#' @param select select string for fields to return, returns all fields by default
+#' It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.
+#' @param select select string for fields to return, returns all fields by default.
+#' It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.
 #' @param apikey Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`
 #' @param rows Maximum number of rows to return (default `NULL` returns all rows)
 #' @param cast_types Logical, use metadata to look up types and type-cast automatically, default `TRUE`
@@ -127,9 +121,7 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
 #'
 #' @examples
 #' # Get all parking tickets issued at the 1100 block of Alberni Street between 2017 and 2019
-#' \dontrun{
 #' get_cov_data("parking-tickets-2017-2019",where = "block = 1100 AND street = 'ALBERNI ST'")
-#'}
 #'
 get_cov_data <- function(dataset_id,format=c("csv","geojson"),
                          select= "*",
@@ -179,8 +171,11 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),
 #' Get aggregates from dataset from Vancouver Open Data Portal
 #' @param dataset_id Dataset id from the Vancouver Open Data catalogue
 #' @param select select string for aggregation, default is `count(*) as count`
+#' It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.
 #' @param group_by grouping variables for the query
+#' It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#group-by-clause}{ODSQL syntax}.
 #' @param where Query parameter to filter data (default `NULL` no filter)
+#' It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.
 #' @param apikey Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`
 #' @param refresh refresh cached data, default `FALSE``
 #' @return tibble format data table output
@@ -188,11 +183,9 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),
 #'
 #' @examples
 #' # Count all parking tickets that relate to fire hydrants by ticket status
-#' \dontrun{
 #' aggregate_cov_data("parking-tickets-2017-2019",
 #'                    group_by = "status",
 #'                    where = "infractiontext LIKE 'FIRE'")
-#'}
 #'
 aggregate_cov_data <- function(dataset_id,select="count(*) as count",group_by=NULL,where=NULL,apikey=getOption("VancouverOpenDataApiKey"),
                          refresh=FALSE) {

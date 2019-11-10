@@ -22,8 +22,6 @@ Get metadata for CoV open data dataset
 }
 \examples{
 # Get the metadata for the street trees dataset
-\dontrun{
 get_cov_metadata("street-trees")
-}
 
 }

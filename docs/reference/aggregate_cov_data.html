@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VancouvR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -151,15 +151,18 @@
     </tr>
     <tr>
       <th>select</th>
-      <td><p>select string for aggregation, default is `count(*) as count`</p></td>
+      <td><p>select string for aggregation, default is `count(*) as count`
+It accepts <a href='https://help.opendatasoft.com/apis/ods-search-v2/#select-clause'>ODSQL syntax</a>.</p></td>
     </tr>
     <tr>
       <th>group_by</th>
-      <td><p>grouping variables for the query</p></td>
+      <td><p>grouping variables for the query
+It accepts <a href='https://help.opendatasoft.com/apis/ods-search-v2/#group-by-clause'>ODSQL syntax</a>.</p></td>
     </tr>
     <tr>
       <th>where</th>
-      <td><p>Query parameter to filter data (default `NULL` no filter)</p></td>
+      <td><p>Query parameter to filter data (default `NULL` no filter)
+It accepts <a href='https://help.opendatasoft.com/apis/ods-search-v2/#where-clause'>ODSQL syntax</a>.</p></td>
     </tr>
     <tr>
       <th>apikey</th>
@@ -178,11 +181,15 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Count all parking tickets that relate to fire hydrants by ticket status</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'>aggregate_cov_data</span>(<span class='st'>"parking-tickets-2017-2019"</span>,
                    <span class='kw'>group_by</span> <span class='kw'>=</span> <span class='st'>"status"</span>,
-                   <span class='kw'>where</span> <span class='kw'>=</span> <span class='st'>"infractiontext LIKE 'FIRE'"</span>)
-}</div></pre>
+                   <span class='kw'>where</span> <span class='kw'>=</span> <span class='st'>"infractiontext LIKE 'FIRE'"</span>)</div><div class='output co'>#&gt; <span class='message'>Downloading data from CoV Open Data portal</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 2</span><span>
+#&gt;   status count
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> IS      </span><span style='text-decoration: underline;'>9</span><span>510
+#&gt; </span><span style='color: #555555;'>2</span><span> VA      </span><span style='text-decoration: underline;'>1</span><span>765
+#&gt; </span><span style='color: #555555;'>3</span><span> WR        14</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

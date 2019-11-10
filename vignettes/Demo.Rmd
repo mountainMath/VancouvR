@@ -41,7 +41,7 @@ get_cov_metadata("property-tax-report") %>%
 ```{r}
 aggregate_cov_data("property-tax-report",
                    group_by="tax_assessment_year as Year",
-                   where="zone_name like 'RS'",
+                   where="zone_name like 'RS-'",
                    select="sum(current_land_value) as Land, sum(current_improvement_value) as Building") %>% 
   mutate(Date=as.Date(paste0(as.integer(Year)-1,"-07-01"))) %>%
   pivot_longer(c("Land","Building")) %>%

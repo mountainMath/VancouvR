@@ -13,9 +13,11 @@ get_cov_data(dataset_id, format = c("csv", "geojson"), select = "*",
 
 \item{format}{`csv` or `geojson` are supported at this time (default `csv`)}
 
-\item{select}{select string for fields to return, returns all fields by default}
+\item{select}{select string for fields to return, returns all fields by default.
+It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.}
 
-\item{where}{Query parameter to filter data (default `NULL` no filter)}
+\item{where}{Query parameter to filter data (default `NULL` no filter)
+It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.}
 
 \item{apikey}{Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`}
 
@@ -33,8 +35,6 @@ Get datasets from Vancouver Open Data Portal
 }
 \examples{
 # Get all parking tickets issued at the 1100 block of Alberni Street between 2017 and 2019
-\dontrun{
 get_cov_data("parking-tickets-2017-2019",where = "block = 1100 AND street = 'ALBERNI ST'")
-}
 
 }

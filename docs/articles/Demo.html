@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VancouvR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -122,16 +122,16 @@
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; # A tibble: 10 x 2</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;    dataset_id                        title                            </span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;    &lt;chr&gt;                             &lt;chr&gt;                            </span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  1 district-lot-outlines             District lot outlines            </span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;  2 property-tie-lines                Property tie lines               </span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;  3 property-addresses                Property addresses               </span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  1 property-tax-report-2006-2013     Property tax report 2006-2013    </span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;  2 property-addresses                Property addresses               </span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;  3 district-lot-outlines             District lot outlines            </span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  4 property-tax-report               Property tax report              </span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  5 property-parcel-polygons          Property parcel polygons         </span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  6 heritage-sites                    Heritage sites                   </span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  7 graffiti                          Graffiti                         </span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  8 building-lines                    Building lines                   </span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  9 block-outlines                    Block outlines                   </span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 10 property-use-inspection-districts Property use inspection districts</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  5 graffiti                          Graffiti                         </span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  6 block-outlines                    Block outlines                   </span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  7 building-lines                    Building lines                   </span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  8 property-use-inspection-districts Property use inspection districts</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  9 property-parcel-polygons          Property parcel polygons         </span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 10 heritage-sites                    Heritage sites</span></a></code></pre></div>
 </div>
 <div id="get-metadata-for-tax-report" class="section level3">
 <h3 class="hasAnchor">
@@ -157,7 +157,7 @@
 <a href="#get-an-overview-of-land-values-in-rs-zones" class="anchor"></a>Get an overview of land values in RS zones</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/aggregate_cov_data.html">aggregate_cov_data</a></span>(<span class="st">"property-tax-report"</span>,</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">                   <span class="dt">group_by=</span><span class="st">"tax_assessment_year as Year"</span>,</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">                   <span class="dt">where=</span><span class="st">"zone_name like 'RS'"</span>,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">                   <span class="dt">where=</span><span class="st">"zone_name like 'RS-'"</span>,</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">                   <span class="dt">select=</span><span class="st">"sum(current_land_value) as Land, sum(current_improvement_value) as Building"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Date=</span><span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(Year)<span class="op">-</span><span class="dv">1</span>,<span class="st">"-07-01"</span>))) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Land"</span>,<span class="st">"Building"</span>)) <span class="op">%&gt;%</span></a>

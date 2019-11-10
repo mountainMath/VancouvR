@@ -1,7 +1,7 @@
 Package: VancouvR
 Type: Package
 Title: Access the 'City of Vancouver' Open Data API
-Version: 0.1.0
+Version: 0.1.1
 Author: Jens von Bergmann
 Maintainer: Jens von Bergmann <jens@mountainmath.ca>
 Description: Wrapper around the 'City of Vancouver' Open Data API <https://opendata.vancouver.ca/api/v2/console> to simplify and standardize access to 'City of Vancouver' open data. 

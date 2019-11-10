@@ -24,8 +24,6 @@ Search for CoV open data datasets
 }
 \examples{
 # search available datasets relating to trees
-\dontrun{
 search_cov_datasets("trees")
-}
 
 }

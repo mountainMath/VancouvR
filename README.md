@@ -22,7 +22,13 @@ remotes::install_github("mountainmath/VancouvR")
 ```
 
 ### API key
-Smaller datasets can be accessed without an API key, but for larger datasets an API key is required. API keys [are available after registering at the City of Vancouver Open Data Portal](https://opendata.vancouver.ca/signup/).
+Smaller datasets can be accessed without an API key, but for larger datasets an API key is required. API keys [are available after registering at the City of Vancouver Open Data Portal](https://opendata.vancouver.ca/signup/). 
+
+Setting the API key in the `.Rprofile` file via
+``` {r}
+options(VancouverOpenDataApiKey=<your api key>)
+```
+will ensure that it is automatically loaded and not exposed when you share your code.
 
 ### Example
 
