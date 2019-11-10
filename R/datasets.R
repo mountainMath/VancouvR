@@ -136,7 +136,7 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),
                          where=NULL,apikey=getOption("VancouverOpenDataApiKey"),
                          rows=NULL,cast_types=TRUE,refresh=FALSE) {
   format=format[1]
-  marker=digest(paste0(c(dataset_id,format,where,rows,apikey),collapse = "_"), algo = "md5")
+  marker=digest(paste0(c(dataset_id,format,where,select,rows,apikey),collapse = "_"), algo = "md5")
   cache_file <- file.path(tempdir(),paste0("CoV_data_",marker, ".rda"))
   if (!refresh & file.exists(cache_file)) {
     message("Reading data from temporary cache")
@@ -187,7 +187,7 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),
 #' @export
 #'
 #' @examples
-#' # Count all issued parking tickets that relate to fire hydrants
+#' # Count all parking tickets that relate to fire hydrants by ticket status
 #' \dontrun{
 #' aggregate_cov_data("parking-tickets-2017-2019",
 #'                    group_by = "status",
@@ -196,7 +196,7 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),
 #'
 aggregate_cov_data <- function(dataset_id,select="count(*) as count",group_by=NULL,where=NULL,apikey=getOption("VancouverOpenDataApiKey"),
                          refresh=FALSE) {
-  marker=digest(paste0(c(dataset_id,select,group_by,where),collapse = "_"), algo = "md5")
+  marker=digest(paste0(c(dataset_id,select,group_by,where,select),collapse = "_"), algo = "md5")
   cache_file <- file.path(tempdir(),paste0("CoV_data_",marker, ".rda"))
   if (!refresh & file.exists(cache_file)) {
     message("Reading data from temporary cache")
