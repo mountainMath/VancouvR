@@ -15,7 +15,13 @@ The package caches downloaded data for the duration of the current session, so r
 [VancouverOpenData package reference](https://mountainmath.github.io/VancouvR/index.html)
 
 ### Installing the package
-You can install `VancouvR` from [GitHub](https://github.com/mountainMath/VancouvR) with:
+To install the latest release version of `VancouvR` from CRAN use
+
+``` r
+install.packages("VancouvR")
+```
+
+The development version of `VancouvR` is available from [GitHub](https://github.com/mountainMath/VancouvR) via
 
 ``` r
 remotes::install_github("mountainmath/VancouvR")
