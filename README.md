@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 [![Build Status](https://travis-ci.org/mountainMath/VancouvR.svg?branch=master)](https://travis-ci.org/mountainMath/VancouvR)
+[![R build status](https://github.com/mountainMath/VancouvR/workflows/R-CMD-check/badge.svg)](https://github.com/mountainMath/VancouvR/actions)
 <!-- badges: end -->
 
 <a href="https://mountainmath.github.io/VancouvR/index.html"><img src="https://raw.githubusercontent.com/mountainMath/VancouvR/master/images/VancouvR-sticker.png" alt="VancouvR logo" align="right" width = "25%" height = "25%"/></a>

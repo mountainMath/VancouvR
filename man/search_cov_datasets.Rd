@@ -4,8 +4,12 @@
 \alias{search_cov_datasets}
 \title{Search for CoV open data datasets}
 \usage{
-search_cov_datasets(search_term, trim = TRUE,
-  apikey = getOption("VancouverOpenDataApiKey"), refresh = FALSE)
+search_cov_datasets(
+  search_term,
+  trim = TRUE,
+  apikey = getOption("VancouverOpenDataApiKey"),
+  refresh = FALSE
+)
 }
 \arguments{
 \item{search_term}{grep string to serach through datasets}

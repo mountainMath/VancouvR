@@ -4,8 +4,11 @@
 \alias{list_cov_datasets}
 \title{Download the CoV open data catalogue}
 \usage{
-list_cov_datasets(trim = TRUE,
-  apikey = getOption("VancouverOpenDataApiKey"), refresh = FALSE)
+list_cov_datasets(
+  trim = TRUE,
+  apikey = getOption("VancouverOpenDataApiKey"),
+  refresh = FALSE
+)
 }
 \arguments{
 \item{trim}{trim all NA columns, optional, defaul `TRUE`}

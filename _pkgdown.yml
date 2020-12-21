@@ -6,6 +6,9 @@ articles:
   - title: "Demo"
     contents: Demo
     description: "Overview over VancouvR functionality"
+  - title: "Isolines"
+    contents: Isolines
+    description: "Use VancouvR to draw countour height lines"
 authors:
   Jens von Bergmann:
     href: https://mountainmath.ca

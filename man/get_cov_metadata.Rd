@@ -4,8 +4,11 @@
 \alias{get_cov_metadata}
 \title{Get metadata for CoV open data dataset}
 \usage{
-get_cov_metadata(dataset_id,
-  apikey = getOption("VancouverOpenDataApiKey"), refresh = FALSE)
+get_cov_metadata(
+  dataset_id,
+  apikey = getOption("VancouverOpenDataApiKey"),
+  refresh = FALSE
+)
 }
 \arguments{
 \item{dataset_id}{the CoV open data dataset id}

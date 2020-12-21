@@ -13,3 +13,4 @@ images
 images/*
 card_fix.sh
 ^CRAN-RELEASE$
+^\.github$

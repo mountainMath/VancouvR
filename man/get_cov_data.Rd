@@ -4,9 +4,16 @@
 \alias{get_cov_data}
 \title{Get datasets from Vancouver Open Data Portal}
 \usage{
-get_cov_data(dataset_id, format = c("csv", "geojson"), select = "*",
-  where = NULL, apikey = getOption("VancouverOpenDataApiKey"),
-  rows = NULL, cast_types = TRUE, refresh = FALSE)
+get_cov_data(
+  dataset_id,
+  format = c("csv", "geojson"),
+  select = "*",
+  where = NULL,
+  apikey = getOption("VancouverOpenDataApiKey"),
+  rows = NULL,
+  cast_types = TRUE,
+  refresh = FALSE
+)
 }
 \arguments{
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}

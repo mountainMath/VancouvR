@@ -4,9 +4,14 @@
 \alias{aggregate_cov_data}
 \title{Get aggregates from dataset from Vancouver Open Data Portal}
 \usage{
-aggregate_cov_data(dataset_id, select = "count(*) as count",
-  group_by = NULL, where = NULL,
-  apikey = getOption("VancouverOpenDataApiKey"), refresh = FALSE)
+aggregate_cov_data(
+  dataset_id,
+  select = "count(*) as count",
+  group_by = NULL,
+  where = NULL,
+  apikey = getOption("VancouverOpenDataApiKey"),
+  refresh = FALSE
+)
 }
 \arguments{
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}

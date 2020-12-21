@@ -1,0 +1,30 @@
+---
+title: "Isolines"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Isolines}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ggplot2)
+library(VancouvR)
+```
+
+The City of Vancouver has a lot of different datasets that can easily be visualized. Mapping contour height lines can be accomplished in just a handful of lines of code.
+
+```{r}
+ggplot(get_cov_data("elevation-contour-lines-1-metre-contours",format="geojson") ) + 
+  geom_sf(aes(color=elevation),size=0.1) + 
+  scale_color_viridis_c(option="inferno",guide=FALSE) + 
+  theme_void()
+```
+
