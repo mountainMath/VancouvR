@@ -13,3 +13,12 @@ authors:
   Jens von Bergmann:
     href: https://mountainmath.ca
 
+template:
+  opengraph:
+    image:
+      src: https://mountainmath.github.io/VancouvR/logo.png
+      alt: "VancouvR logo"
+    twitter:
+      creator: "@vb_jens"
+      site: "https://mountainmath.github.io/VancouvR/logo.png"
+      card: summary_large_image
