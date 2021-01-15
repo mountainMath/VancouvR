@@ -13,7 +13,7 @@ The package caches downloaded data for the duration of the current session, so r
 
 
 ### Reference
-[VancouverOpenData package reference](https://mountainmath.github.io/VancouvR/index.html)
+[VancouverOpenData package reference](https://mountainmath.github.io/VancouvR/)
 
 ### Installing the package
 To install the latest release version of `VancouvR` from CRAN use
