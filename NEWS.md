@@ -1,3 +1,8 @@
+## VancouvR 0.1.3
+
+### Minor changes
+- addapt to changes in CoV proterty-tax-report dataset
+  
 ## VancouvR 0.1.2
 
 ### Minor changes

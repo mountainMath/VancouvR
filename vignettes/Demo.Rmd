@@ -43,7 +43,7 @@ search_cov_datasets("property-tax") %>%
   lapply(function(ds)
     aggregate_cov_data(ds,
                        group_by="tax_assessment_year as Year",
-                       where="zone_name like 'RS-'",
+                       where="zoning_district like 'RS-'",
                        select="sum(current_land_value) as Land, sum(current_improvement_value) as Building")) %>% 
   bind_rows() %>%
   mutate(Date=as.Date(paste0(as.integer(Year)-1,"-07-01"))) %>%
