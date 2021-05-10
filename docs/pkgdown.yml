@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Demo: Demo.html
   Isolines: Isolines.html
-last_built: 2021-05-10T08:35Z
+last_built: 2021-05-10T17:34Z
 urls:
   reference: https://mountainmath.github.io/VancouvR//reference
   article: https://mountainmath.github.io/VancouvR//articles
