@@ -12,7 +12,8 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = nzchar(Sys.getenv("COMPILE_VIG"))
 )
 ```
 
@@ -58,7 +59,7 @@ search_cov_datasets("property-tax") %>%
 ### Get data for property tax report and property polygons
 ```{r}
 tax_data <- get_cov_data(dataset_id = "property-tax-report",
-                         where="tax_assessment_year=2020",
+                         where="tax_assessment_year='2021'",
                          select = "current_land_value, land_coordinate as tax_coord")
 property_polygons <- get_cov_data(dataset_id="property-parcel-polygons",format = "geojson")
 ```
@@ -74,7 +75,7 @@ plot_data <- property_polygons %>%
 ggplot(plot_data) +
   geom_sf(aes(fill=rlvd),color=NA) +
   scale_fill_viridis_d(option="magma",na.value="darkgrey") +
-  labs(title="2020 relative land values",fill="Value per m^2",caption="CoV Open Data") +
+  labs(title="July 2020 relative land values",fill="Value per m^2",caption="CoV Open Data") +
   coord_sf(datum=NA)
 ```
 
