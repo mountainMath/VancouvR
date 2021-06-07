@@ -51,7 +51,7 @@ search_cov_datasets("properties")
 Get the first 10 records of the property tax report for 2019 tax year.
 
 ``` r
-get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year=2019",rows=10)
+get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year='2021'",rows=10)
 ```
 
 Get metadata for the street trees dataset.

@@ -1,7 +1,14 @@
+## VancouvR 0.1.4
+
+### Minor changes
+- addapt to changes in CoV property-tax-report dataset
+- remove vignette compilation from CRAN checks to avoid triggering CRAN issues when COV open data portal is offline
+- add daily CRAN check GitHub action identify issues
+  
 ## VancouvR 0.1.3
 
 ### Minor changes
-- addapt to changes in CoV proterty-tax-report dataset
+- addapt to changes in CoV property-tax-report dataset
   
 ## VancouvR 0.1.2
 

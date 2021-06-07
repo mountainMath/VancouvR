@@ -17,3 +17,5 @@ R/hex_sticker.R
 images
 images/*
 fix_meta.sh
+/doc/
+/Meta/
