@@ -61,7 +61,8 @@ search_cov_datasets("property-tax") %>%
 tax_data <- get_cov_data(dataset_id = "property-tax-report",
                          where="tax_assessment_year='2021'",
                          select = "current_land_value, land_coordinate as tax_coord")
-property_polygons <- get_cov_data(dataset_id="property-parcel-polygons",format = "geojson")
+property_polygons <- get_cov_data(dataset_id="property-parcel-polygons",format = "geojson") %>%
+  sf::st_transform(26910)
 ```
 
 ### Compute and plot relative land values
