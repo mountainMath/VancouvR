@@ -21,8 +21,12 @@ list_cov_datasets <- function(trim = TRUE, apikey=getOption("VancouverOpenDataAp
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))
     }
-    result=read_delim(content(response,as="text"),delim=";",col_types = cols(.default="c")) %>%
-      set_names(gsub("^default\\.|^custom\\.|dcat\\.","",names(.))) %>%
+    result <- read_delim(content(response,as="text"),delim=";",col_types = cols(.default="c"))
+    header <- tibble(h=names(result)) %>%
+      mutate(hh=case_when(!grepl(".+\\..+|^datasetid$",.data$h) ~ paste0("X.",.data$h), TRUE ~ .data$h))%>%
+      mutate(hhh=gsub("^default\\.|^custom\\.|dcat\\.","",.data$hh))
+    result<- result %>%
+      set_names(header$hhh) %>%
       mutate(dataset_id=.data$datasetid) %>%
       select(c(main_cols,setdiff(names(.),main_cols))) %>%
       mutate_if(is.character,unqoute_strings)
