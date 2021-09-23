@@ -1,7 +1,7 @@
 # VancouvR
 
 <!-- badges: start -->
-[![R build status](https://github.com/mountainMath/VancouvR/workflows/R-CMD-check/badge.svg)](https://github.com/mountainMath/VancouvR/actions)
+[![R-CMD-check](https://github.com/mountainMath/VancouvR/workflows/R-CMD-check/badge.svg)](https://github.com/mountainMath/VancouvR/actions)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/VancouvR)](https://cran.r-project.org/package=VancouvR)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/VancouvR)](https://cranlogs.r-pkg.org/badges/VancouvR)
 <!-- badges: end -->

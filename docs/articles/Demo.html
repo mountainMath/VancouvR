@@ -81,7 +81,7 @@
 
       
 
-      </header><script src="Demo_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><script src="Demo_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Demo</h1>
@@ -115,7 +115,8 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/search_cov_datasets.html">search_cov_datasets</a></span><span class="op">(</span><span class="st">"property-tax"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dataset_id</span>,<span class="va">title</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 4 x 2</span>
+<span class="co">#&gt; Warning: One or more parsing issues, see `problems()` for details</span>
+<span class="co">#&gt; # A tibble: 4 × 2</span>
 <span class="co">#&gt;   dataset_id                    title                        </span>
 <span class="co">#&gt;   &lt;chr&gt;                         &lt;chr&gt;                        </span>
 <span class="co">#&gt; 1 property-tax-report-2016-2019 Property tax report 2016-2019</span>
@@ -129,19 +130,19 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_cov_metadata.html">get_cov_metadata</a></span><span class="op">(</span><span class="st">"property-tax-report"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 x 4</span>
-<span class="co">#&gt;    name            type  label          description                             </span>
-<span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;                                   </span>
-<span class="co">#&gt;  1 current_land_v… int   CURRENT_LAND_… The market value of the fee simple inte…</span>
-<span class="co">#&gt;  2 current_improv… int   CURRENT_IMPRO… The market value of the fee simple inte…</span>
-<span class="co">#&gt;  3 tax_assessment… text  TAX_ASSESSMEN… Year in effect for Current_Land_Value, …</span>
-<span class="co">#&gt;  4 previous_land_… int   PREVIOUS_LAND… This value is for the previous assessme…</span>
-<span class="co">#&gt;  5 previous_impro… int   PREVIOUS_IMPR… This value is for the previous assessme…</span>
-<span class="co">#&gt;  6 year_built      text  YEAR_BUILT     Year that the property was built. Assig…</span>
-<span class="co">#&gt;  7 big_improvemen… text  BIG_IMPROVEME… Year of major improvement to the proper…</span>
-<span class="co">#&gt;  8 tax_levy        doub… TAX_LEVY       This is the total taxes printed on the …</span>
-<span class="co">#&gt;  9 neighbourhood_… text  NEIGHBOURHOOD… This is a 3-digit number assigned by BC…</span>
-<span class="co">#&gt; 10 report_year     text  REPORT_YEAR    Report year</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 10 × 4</span>
+<span class="co">#&gt;    name                       type   label                      description     </span>
+<span class="co">#&gt;    &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;                      &lt;chr&gt;           </span>
+<span class="co">#&gt;  1 current_land_value         int    CURRENT_LAND_VALUE         The market valu…</span>
+<span class="co">#&gt;  2 current_improvement_value  int    CURRENT_IMPROVEMENT_VALUE  The market valu…</span>
+<span class="co">#&gt;  3 tax_assessment_year        text   TAX_ASSESSMENT_YEAR        Year in effect …</span>
+<span class="co">#&gt;  4 previous_land_value        int    PREVIOUS_LAND_VALUE        This value is f…</span>
+<span class="co">#&gt;  5 previous_improvement_value int    PREVIOUS_IMPROVEMENT_VALUE This value is f…</span>
+<span class="co">#&gt;  6 year_built                 text   YEAR_BUILT                 Year that the p…</span>
+<span class="co">#&gt;  7 big_improvement_year       text   BIG_IMPROVEMENT_YEAR       Year of major i…</span>
+<span class="co">#&gt;  8 tax_levy                   double TAX_LEVY                   This is the tot…</span>
+<span class="co">#&gt;  9 neighbourhood_code         text   NEIGHBOURHOOD_CODE         This is a 3-dig…</span>
+<span class="co">#&gt; 10 report_year                text   REPORT_YEAR                Report year</span></code></pre></div>
 </div>
 <div id="get-an-overview-of-land-values-in-rs-zones" class="section level3">
 <h3 class="hasAnchor">
