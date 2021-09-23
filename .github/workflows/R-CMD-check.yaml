@@ -73,7 +73,7 @@ jobs:
 
       - name: "[Custom block] [Linux] Install spatial libraries"
         if: runner.os == 'Linux'
-        run: sudo apt-get install proj-bin libproj-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev
+        run: sudo apt-get install proj-bin libproj-dev libproj12 libgdal-dev libproj-dev libgeos-dev libudunits2-dev
 
       - name: Cache R packages
         if: runner.os != 'Windows'
