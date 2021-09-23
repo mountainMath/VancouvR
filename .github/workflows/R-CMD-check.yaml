@@ -67,6 +67,14 @@ jobs:
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
 
+      - name: "[Stage] [Linux] Install required system libs"
+        if: runner.os == 'Linux'
+        run: sudo apt install libcurl4-openssl-dev libgit2-dev
+
+      - name: "[Custom block] [Linux] Install spatial libraries"
+        if: runner.os == 'Linux'
+        run: sudo apt-get install libgdal-dev libproj-dev libgeos-dev libudunits2-dev
+
       - name: Cache R packages
         if: runner.os != 'Windows'
         uses: actions/cache@v2
