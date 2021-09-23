@@ -34,13 +34,15 @@ jobs:
           # Use 3.6 to trigger usage of RTools35
           - {os: windows-latest, r: '3.6'}
 
+          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           # Use older ubuntu to maximise backward compatibility
           - {os: ubuntu-18.04,   r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-18.04,   r: 'release'}
-          - {os: ubuntu-18.04,   r: 'oldrel-1'}
-          - {os: ubuntu-18.04,   r: 'oldrel-2'}
-          - {os: ubuntu-18.04,   r: 'oldrel-3'}
-          - {os: ubuntu-18.04,   r: 'oldrel-4'}
+          # - {os: ubuntu-18.04,   r: 'oldrel-1'}
+          # - {os: ubuntu-18.04,   r: 'oldrel-2'}
+          # - {os: ubuntu-18.04,   r: 'oldrel-3'}
+          # - {os: ubuntu-18.04,   r: 'oldrel-4'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -74,12 +76,20 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install system dependencies
-        if: runner.os == 'Linux'
+        if: matrix.os == 'ubuntu-20.04'
         run: |
           while read -r cmd
           do
             eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "16.04"))')
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+
+      - name: Install system dependencies
+        if: matrix.os == 'ubuntu-18.04'
+        run: |
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "18.04"))')
 
       - name: Install dependencies
         run: |
