@@ -84,14 +84,9 @@ jobs:
           done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
 
 
-      - name: Windows only uses binary packages
-        if: runner.os == 'Windows'
-        run: |
-          options(pkgType = "binary")
-
       - name: Install dependencies
         run: |
-          remotes::install_deps(dependencies = TRUE)
+          remotes::install_deps(dependencies = TRUE, type="binary"
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
