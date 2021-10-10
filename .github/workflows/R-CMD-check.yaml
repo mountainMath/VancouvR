@@ -85,8 +85,9 @@ jobs:
 
 
       - name: Windows only uses binary packages
+        if: runner.os == 'Windows'
         run: |
-          options("pkgType" = "binary")
+          options('pkgType' = 'binary')
 
       - name: Install dependencies
         run: |
