@@ -37,8 +37,10 @@ Get aggregates from dataset from Vancouver Open Data Portal
 }
 \examples{
 # Count all parking tickets that relate to fire hydrants by ticket status
+\dontrun{
 aggregate_cov_data("parking-tickets-2017-2019",
                    group_by = "status",
                    where = "infractiontext LIKE 'FIRE'")
+}
 
 }

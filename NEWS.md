@@ -1,3 +1,8 @@
+## VancouvR 0.1.7
+
+### Minor changes
+- exclude examples from tests to guard against CoV API hiccups
+
 ## VancouvR 0.1.6
 
 ### Minor changes

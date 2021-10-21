@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VancouvR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -164,27 +164,10 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># List and search available datasets</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'>list_cov_datasets</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: One or more parsing issues, see `problems()` for details</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 176 × 24</span>
-#&gt;    dataset_id  title  keyword  `search-term`  datasetid `data-owner` `data-team`
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
-#&gt; <span style='color: #BCBCBC;'> 1</span> bike-lane-… Bike … bicycle  bicycle, bike… bike-lan… City of Van… Engineerin…
-#&gt; <span style='color: #BCBCBC;'> 2</span> bike-lane-… Bike … bicycle  bicycle, bike… bike-lan… City of Van… Engineerin…
-#&gt; <span style='color: #BCBCBC;'> 3</span> census-loc… Censu… census   neighborhood,… census-l… Statistics … Planning, …
-#&gt; <span style='color: #BCBCBC;'> 4</span> census-loc… Censu… census   neighborhood,… census-l… Statistics … Planning, …
-#&gt; <span style='color: #BCBCBC;'> 5</span> census-loc… Censu… census   neighborhood,… census-l… Statistics … Planning, …
-#&gt; <span style='color: #BCBCBC;'> 6</span> census-loc… Censu… census   2016, StatCan… census-l… Statistics … Planning, …
-#&gt; <span style='color: #BCBCBC;'> 7</span> anonymous-… Anony… <span style='color: #BB0000;'>NA</span>       election, vot… anonymou… City of Van… City Clerk…
-#&gt; <span style='color: #BCBCBC;'> 8</span> olympic-tr… Olymp… 2010 Wi… &lt;div&gt;&lt;/div&gt;    olympic-… City of Van… Engineerin…
-#&gt; <span style='color: #BCBCBC;'> 9</span> 3-1-1-case… 3-1-1… <span style='color: #BB0000;'>NA</span>       311, contact … 3-1-1-ca… City of Van… Technology…
-#&gt; <span style='color: #BCBCBC;'>10</span> elevation-… Eleva… <span style='color: #BB0000;'>NA</span>       digital        elevatio… City of Van… <span style='color: #BB0000;'>NA</span>         
-#&gt; <span style='color: #949494;'># … with 166 more rows, and 17 more variables: change-log &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   description &lt;chr&gt;, theme &lt;chr&gt;, license &lt;chr&gt;, license_url &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   timezone &lt;chr&gt;, modified &lt;chr&gt;, modified_updates_on_metadata_change &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   modified_updates_on_data_change &lt;chr&gt;, data_processed &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   metadata_processed &lt;chr&gt;, geographic_reference &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   geographic_reference_auto &lt;chr&gt;, territory &lt;chr&gt;, publisher &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   records_count &lt;chr&gt;, federated &lt;chr&gt;</span></div><div class='input'>
+<span class='op'>}</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

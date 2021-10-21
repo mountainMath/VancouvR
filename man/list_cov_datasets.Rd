@@ -25,6 +25,8 @@ Download the CoV open data catalogue
 }
 \examples{
 # List and search available datasets
+\dontrun{
 list_cov_datasets()
+}
 
 }
