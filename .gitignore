@@ -19,3 +19,4 @@ images/*
 fix_meta.sh
 /doc/
 /Meta/
+.DS_Store

@@ -38,7 +38,7 @@ options(VancouverOpenDataApiKey=<your api key>)
 ```
 will ensure that it is automatically loaded and not exposed when you share your code.
 
-### Example
+### Examples
 
 Get a list of datasets relating to properties
 
@@ -65,3 +65,20 @@ Count the number of cherry trees by neighbourhood.
 aggregate_cov_data("street-trees",where = "common_name LIKE 'CHERRY'", group_by = "neighbourhood_name")
 ```
 
+## Cite **VancouvR**
+
+If you wish to cite VancouvR:
+
+  von Bergmann, J. VancouvR: ccess the 'City of Vancouver' Open Data API. v0.1.8.
+
+
+A BibTeX entry for LaTeX users is
+```
+  @Manual{VancouvR,
+    author = {Jens {von Bergmann}},
+    title = {VancouvR: Access the 'City of Vancouver' Open Data API,
+    year = {2024},
+    note = {R package version 0.1.8},
+    url = {https://mountainmath.github.io/VancouvR/},
+  }
+```

@@ -30,6 +30,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,18 +44,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VancouvR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.8</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -66,7 +62,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/mountainMath/VancouvR/">
+  <a href="https://github.com/mountainMath/VancouvR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,15 +77,16 @@
 
       
 
-      </header><script src="Demo_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Demo</h1>
-                        <h4 class="author">Jens von Bergmann</h4>
+                        <h4 data-toc-skip class="author">Jens von
+Bergmann</h4>
             
-            <h4 class="date">2019-11-04</h4>
+            <h4 data-toc-skip class="date">2019-11-04</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/mountainMath/VancouvR/blob/master/vignettes/Demo.Rmd"><code>vignettes/Demo.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/mountainMath/VancouvR/blob/HEAD/vignettes/Demo.Rmd" class="external-link"><code>vignettes/Demo.Rmd</code></a></small>
       <div class="hidden name"><code>Demo.Rmd</code></div>
 
     </div>
@@ -97,105 +94,108 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mountainMath/VancouvR">VancouvR</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
-<div id="get-a-list-of-property-tax-related-datasets" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-a-list-of-property-tax-related-datasets" class="anchor"></a>Get a list of property tax related datasets</h3>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mountainMath/VancouvR" class="external-link">VancouvR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="get-a-list-of-property-tax-related-datasets">Get a list of property tax related datasets<a class="anchor" aria-label="anchor" href="#get-a-list-of-property-tax-related-datasets"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/search_cov_datasets.html">search_cov_datasets</a></span><span class="op">(</span><span class="st">"property-tax"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dataset_id</span>,<span class="va">title</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 4 × 2</span>
-<span class="co">#&gt;   dataset_id                    title                        </span>
-<span class="co">#&gt;   &lt;chr&gt;                         &lt;chr&gt;                        </span>
-<span class="co">#&gt; 1 property-tax-report-2016-2019 Property tax report 2016-2019</span>
-<span class="co">#&gt; 2 property-tax-report-2011-2015 Property tax report 2011-2015</span>
-<span class="co">#&gt; 3 property-tax-report-2006-2010 Property tax report 2006-2010</span>
-<span class="co">#&gt; 4 property-tax-report           Property tax report</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/search_cov_datasets.html">search_cov_datasets</a></span><span class="op">(</span><span class="st">"property-tax"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dataset_id</span>,<span class="va">title</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 2</span></span></span>
+<span><span class="co">#&gt;   dataset_id                    title                        </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> property-tax-report-2016-2019 Property tax report 2016-2019</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> property-tax-report-2011-2015 Property tax report 2011-2015</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> property-tax-report-2006-2010 Property tax report 2006-2010</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> property-tax-report           Property tax report</span></span></code></pre></div>
 </div>
-<div id="get-metadata-for-tax-report" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-metadata-for-tax-report" class="anchor"></a>Get metadata for tax report</h3>
+<div class="section level3">
+<h3 id="get-metadata-for-tax-report">Get metadata for tax report<a class="anchor" aria-label="anchor" href="#get-metadata-for-tax-report"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/get_cov_metadata.html">get_cov_metadata</a></span><span class="op">(</span><span class="st">"property-tax-report"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 × 4</span>
-<span class="co">#&gt;    name                       type   label                      description     </span>
-<span class="co">#&gt;    &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;                      &lt;chr&gt;           </span>
-<span class="co">#&gt;  1 current_land_value         int    CURRENT_LAND_VALUE         The market valu…</span>
-<span class="co">#&gt;  2 current_improvement_value  int    CURRENT_IMPROVEMENT_VALUE  The market valu…</span>
-<span class="co">#&gt;  3 tax_assessment_year        text   TAX_ASSESSMENT_YEAR        Year in effect …</span>
-<span class="co">#&gt;  4 previous_land_value        int    PREVIOUS_LAND_VALUE        This value is f…</span>
-<span class="co">#&gt;  5 previous_improvement_value int    PREVIOUS_IMPROVEMENT_VALUE This value is f…</span>
-<span class="co">#&gt;  6 year_built                 text   YEAR_BUILT                 Year that the p…</span>
-<span class="co">#&gt;  7 big_improvement_year       text   BIG_IMPROVEMENT_YEAR       Year of major i…</span>
-<span class="co">#&gt;  8 tax_levy                   double TAX_LEVY                   This is the tot…</span>
-<span class="co">#&gt;  9 neighbourhood_code         text   NEIGHBOURHOOD_CODE         This is a 3-dig…</span>
-<span class="co">#&gt; 10 report_year                text   REPORT_YEAR                Report year</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_cov_metadata.html">get_cov_metadata</a></span><span class="op">(</span><span class="st">"property-tax-report"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
+<span><span class="co">#&gt;    name                       type   label                      description     </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> current_land_value         int    CURRENT_LAND_VALUE         The market valu…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> current_improvement_value  int    CURRENT_IMPROVEMENT_VALUE  The market valu…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> tax_assessment_year        text   TAX_ASSESSMENT_YEAR        Year in effect …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> previous_land_value        int    PREVIOUS_LAND_VALUE        This value is f…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> previous_improvement_value int    PREVIOUS_IMPROVEMENT_VALUE This value is f…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> year_built                 text   YEAR_BUILT                 Year that the p…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> big_improvement_year       text   BIG_IMPROVEMENT_YEAR       Year of major i…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> tax_levy                   double TAX_LEVY                   This is the tot…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> neighbourhood_code         text   NEIGHBOURHOOD_CODE         This is a 3-dig…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> report_year                text   REPORT_YEAR                Year when data …</span></span></code></pre></div>
 </div>
-<div id="get-an-overview-of-land-values-in-rs-zones" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-an-overview-of-land-values-in-rs-zones" class="anchor"></a>Get an overview of land values in RS zones</h3>
+<div class="section level3">
+<h3 id="get-an-overview-of-land-values-in-rs-zones">Get an overview of land values in RS zones<a class="anchor" aria-label="anchor" href="#get-an-overview-of-land-values-in-rs-zones"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/search_cov_datasets.html">search_cov_datasets</a></span><span class="op">(</span><span class="st">"property-tax"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">dataset_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">ds</span><span class="op">)</span>
-    <span class="fu"><a href="../reference/aggregate_cov_data.html">aggregate_cov_data</a></span><span class="op">(</span><span class="va">ds</span>,
-                       group_by<span class="op">=</span><span class="st">"tax_assessment_year as Year"</span>,
-                       where<span class="op">=</span><span class="st">"zoning_district like 'RS-'"</span>,
-                       select<span class="op">=</span><span class="st">"sum(current_land_value) as Land, sum(current_improvement_value) as Building"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Date<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">Year</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>,<span class="st">"-07-01"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Land"</span>,<span class="st">"Building"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Year</span>,y<span class="op">=</span><span class="va">value</span>,color<span class="op">=</span><span class="va">name</span>,group<span class="op">=</span><span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels<span class="op">=</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"$"</span>,<span class="va">x</span><span class="op">/</span><span class="fl">1000000000</span>,<span class="st">"Bn"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"City of Vancouver RS zoned land values"</span>,color<span class="op">=</span><span class="st">""</span>,y<span class="op">=</span><span class="st">"Aggregate value (nominal)"</span><span class="op">)</span>
-<span class="co">#&gt; Downloading data from CoV Open Data portal</span>
-<span class="co">#&gt; Downloading data from CoV Open Data portal</span>
-<span class="co">#&gt; Downloading data from CoV Open Data portal</span>
-<span class="co">#&gt; Downloading data from CoV Open Data portal</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/search_cov_datasets.html">search_cov_datasets</a></span><span class="op">(</span><span class="st">"property-tax"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">dataset_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">ds</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="../reference/aggregate_cov_data.html">aggregate_cov_data</a></span><span class="op">(</span><span class="va">ds</span>,</span>
+<span>                       group_by<span class="op">=</span><span class="st">"tax_assessment_year as Year"</span>,</span>
+<span>                       where<span class="op">=</span><span class="st">"zoning_district like 'RS-'"</span>,</span>
+<span>                       select<span class="op">=</span><span class="st">"sum(current_land_value) as Land, sum(current_improvement_value) as Building"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Date<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">Year</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>,<span class="st">"-07-01"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Land"</span>,<span class="st">"Building"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Year</span>,y<span class="op">=</span><span class="va">value</span>,color<span class="op">=</span><span class="va">name</span>,group<span class="op">=</span><span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels<span class="op">=</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"$"</span>,<span class="va">x</span><span class="op">/</span><span class="fl">1000000000</span>,<span class="st">"Bn"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"City of Vancouver RS zoned land values"</span>,color<span class="op">=</span><span class="st">""</span>,y<span class="op">=</span><span class="st">"Aggregate value (nominal)"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Downloading data from CoV Open Data portal</span></span>
+<span><span class="co">#&gt; Downloading data from CoV Open Data portal</span></span>
+<span><span class="co">#&gt; Downloading data from CoV Open Data portal</span></span>
+<span><span class="co">#&gt; Downloading data from CoV Open Data portal</span></span></code></pre></div>
 <p><img src="Demo_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
-<div id="get-data-for-property-tax-report-and-property-polygons" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-data-for-property-tax-report-and-property-polygons" class="anchor"></a>Get data for property tax report and property polygons</h3>
+<div class="section level3">
+<h3 id="get-data-for-property-tax-report-and-property-polygons">Get data for property tax report and property polygons<a class="anchor" aria-label="anchor" href="#get-data-for-property-tax-report-and-property-polygons"></a>
+</h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tax_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cov_data.html">get_cov_data</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"property-tax-report"</span>,
-                         where<span class="op">=</span><span class="st">"tax_assessment_year='2021'"</span>,
-                         select <span class="op">=</span> <span class="st">"current_land_value, land_coordinate as tax_coord"</span><span class="op">)</span>
-<span class="co">#&gt; Downloading data from CoV Open Data portal</span>
-<span class="co">#&gt; Warning in mask$eval_all_mutate(quo): NAs introduced by coercion to integer</span>
-<span class="co">#&gt; range</span>
-<span class="va">property_polygons</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cov_data.html">get_cov_data</a></span><span class="op">(</span>dataset_id<span class="op">=</span><span class="st">"property-parcel-polygons"</span>,format <span class="op">=</span> <span class="st">"geojson"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="fl">26910</span><span class="op">)</span>
-<span class="co">#&gt; Downloading data from CoV Open Data portal</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tax_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cov_data.html">get_cov_data</a></span><span class="op">(</span>dataset_id <span class="op">=</span> <span class="st">"property-tax-report"</span>,</span>
+<span>                         where<span class="op">=</span><span class="st">"tax_assessment_year='2021'"</span>,</span>
+<span>                         select <span class="op">=</span> <span class="st">"current_land_value, land_coordinate as tax_coord"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Downloading data from CoV Open Data portal</span></span>
+<span><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> In argument: `current_land_value =</span></span>
+<span><span class="co">#&gt;   .Primitive("as.integer")(current_land_value)`.</span></span>
+<span><span class="co">#&gt; Caused by warning:</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> NAs introduced by coercion to integer range</span></span>
+<span><span class="va">property_polygons</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cov_data.html">get_cov_data</a></span><span class="op">(</span>dataset_id<span class="op">=</span><span class="st">"property-parcel-polygons"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">26910</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Downloading data from CoV Open Data portal</span></span></code></pre></div>
 </div>
-<div id="compute-and-plot-relative-land-values" class="section level3">
-<h3 class="hasAnchor">
-<a href="#compute-and-plot-relative-land-values" class="anchor"></a>Compute and plot relative land values</h3>
+<div class="section level3">
+<h3 id="compute-and-plot-relative-land-values">Compute and plot relative land values<a class="anchor" aria-label="anchor" href="#compute-and-plot-relative-land-values"></a>
+</h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="va">property_polygons</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tax_data</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">tax_coord</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>current_land_value<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">current_land_value</span><span class="op">)</span><span class="op">)</span>,by<span class="op">=</span><span class="st">"tax_coord"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rlv<span class="op">=</span><span class="va">current_land_value</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rlvd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">rlv</span>,breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>,<span class="fl">1000</span>,<span class="fl">2000</span>,<span class="fl">3000</span>,<span class="fl">4000</span>,<span class="fl">5000</span>,<span class="fl">7500</span>,<span class="fl">10000</span>,<span class="fl">25000</span>,<span class="fl">50000</span>,<span class="cn">Inf</span><span class="op">)</span>,
-                  labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;$1k"</span>,<span class="st">"$1k-$2k"</span>,<span class="st">"$2k-$3k"</span>,<span class="st">"$3k-$4k"</span>,<span class="st">"$4k-$5k"</span>,<span class="st">"$5k-$7.5k"</span>,<span class="st">"$7.5k-$10k"</span>,<span class="st">"$10k-$25k"</span>,<span class="st">"$25k-$50k"</span>,<span class="st">"&gt;$50k"</span><span class="op">)</span>,
-                  ordered_result <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_data</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">rlvd</span><span class="op">)</span>,color<span class="op">=</span><span class="cn">NA</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span>option<span class="op">=</span><span class="st">"magma"</span>,na.value<span class="op">=</span><span class="st">"darkgrey"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"July 2020 relative land values"</span>,fill<span class="op">=</span><span class="st">"Value per m^2"</span>,caption<span class="op">=</span><span class="st">"CoV Open Data"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>datum<span class="op">=</span><span class="cn">NA</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="va">property_polygons</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">tax_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">tax_coord</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>current_land_value<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">current_land_value</span><span class="op">)</span><span class="op">)</span>,by<span class="op">=</span><span class="st">"tax_coord"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rlv<span class="op">=</span><span class="va">current_land_value</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html" class="external-link">st_area</a></span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rlvd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">rlv</span>,breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>,<span class="fl">1000</span>,<span class="fl">2000</span>,<span class="fl">3000</span>,<span class="fl">4000</span>,<span class="fl">5000</span>,<span class="fl">7500</span>,<span class="fl">10000</span>,<span class="fl">25000</span>,<span class="fl">50000</span>,<span class="cn">Inf</span><span class="op">)</span>,</span>
+<span>                  labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt;$1k"</span>,<span class="st">"$1k-$2k"</span>,<span class="st">"$2k-$3k"</span>,<span class="st">"$3k-$4k"</span>,<span class="st">"$4k-$5k"</span>,<span class="st">"$5k-$7.5k"</span>,<span class="st">"$7.5k-$10k"</span>,<span class="st">"$10k-$25k"</span>,<span class="st">"$25k-$50k"</span>,<span class="st">"&gt;$50k"</span><span class="op">)</span>,</span>
+<span>                  ordered_result <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_data</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">rlvd</span><span class="op">)</span>,color<span class="op">=</span><span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span>option<span class="op">=</span><span class="st">"magma"</span>,na.value<span class="op">=</span><span class="st">"darkgrey"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"July 2020 relative land values"</span>,fill<span class="op">=</span><span class="st">"Value per m^2"</span>,caption<span class="op">=</span><span class="st">"CoV Open Data"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>datum<span class="op">=</span><span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Demo_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
   </div>
@@ -209,11 +209,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://mountainmath.ca">Jens von Bergmann</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://mountainmath.ca" class="external-link">Jens von Bergmann</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -221,6 +223,8 @@
 
   
 
+
+  
 
   </body>
 </html>
