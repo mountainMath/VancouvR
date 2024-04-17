@@ -1,9 +1,9 @@
 # VancouvR
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/mountainMath/VancouvR/workflows/R-CMD-check/badge.svg)](https://github.com/mountainMath/VancouvR/actions)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/VancouvR)](https://cran.r-project.org/package=VancouvR)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/VancouvR)](https://cranlogs.r-pkg.org/badges/VancouvR)
+[![R-CMD-check](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 <a href="https://mountainmath.github.io/VancouvR/index.html"><img src="https://raw.githubusercontent.com/mountainMath/VancouvR/master/images/VancouvR-sticker.png" alt="VancouvR logo" align="right" width = "25%" height = "25%"/></a>
