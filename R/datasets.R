@@ -183,11 +183,11 @@ get_cov_data <- function(dataset_id,
         geo_result <- result %>%
           filter(!is.na(!!as.name(geo_column))) %>%
           mutate(geometry=geojsonsf::geojson_sf(!!as.name(geo_column))$geometry) |>
-          select(...link,geometry)
+          select(.data$...link,.data$geometry)
 
         result |>
           left_join(geo_result,by="...link") %>%
-          select(-...link) %>%
+          select(-.data$...link) %>%
           sf::st_as_sf()
       }, error=\(e){
         warning("Error converting geojson to sf, returning as tibble")

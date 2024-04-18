@@ -13,6 +13,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
+  warning = FALSE,
   eval = nzchar(Sys.getenv("COMPILE_VIG"))
 )
 ```
@@ -37,7 +38,7 @@ get_cov_metadata("property-tax-report") %>%
   tail(10)
 ```
 
-### Get an overview of land values in RS zones
+### Get an overview of land and building values in RS zones
 ```{r}
 search_cov_datasets("property-tax") %>%
   pull(dataset_id) %>%
@@ -53,11 +54,14 @@ search_cov_datasets("property-tax") %>%
   geom_point(shape=21) +
   geom_line() +
   scale_y_continuous(labels=function(x)paste0("$",x/1000000000,"Bn")) +
-  labs(title="City of Vancouver RS/R1-1 zoned land values",color="",y="Aggregate value (nominal)")
+  labs(title="City of Vancouver RS/R1-1 zoned land and building values",
+       x="Tax year", color="", y="Aggregate value (nominal)")
 ```
 
 
 ### Get data for property tax report and property polygons
+When metadata indicates that the data has a spatial componenet the package will automatically return the data in `sf` format. 
+
 ```{r}
 tax_data <- get_cov_data(dataset_id = "property-tax-report",
                          where="tax_assessment_year='2024'",
