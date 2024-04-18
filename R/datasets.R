@@ -117,7 +117,6 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
 
 #' Get datasets from Vancouver Open Data Portal
 #' @param dataset_id Dataset id from the Vancouver Open Data catalogue
-#' @param format `csv` or `geojson` are supported at this time (default `csv`)
 #' @param where Query parameter to filter data (default `NULL` no filter)
 #' It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.
 #' @param select select string for fields to return, returns all fields by default.
@@ -126,7 +125,8 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
 #' @param rows Maximum number of rows to return (default `NULL` returns all rows)
 #' @param cast_types Logical, use metadata to look up types and type-cast automatically, default `TRUE`
 #' @param refresh refresh cached data, default `FALSE``
-#' @return tibble or sf object data table output, depending on the value of the `format` parameter
+#' @param ... optional ignored parameters, for compatibility with previous versions that relied on the `format` parameter
+#' @return tibble or sf object data table output, depending on whether the dataset is spatial and `cast_types` is `TRUE`
 #' @export
 #'
 #' @examples
@@ -135,11 +135,12 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
 #' get_cov_data("parking-tickets-2017-2019",where = "block = 1100 AND street = 'ALBERNI ST'")
 #' }
 #'
-get_cov_data <- function(dataset_id,format=c("csv","geojson"),
+get_cov_data <- function(dataset_id,
                          select= "*",
                          where=NULL,apikey=getOption("VancouverOpenDataApiKey"),
-                         rows=NULL,cast_types=TRUE,refresh=FALSE) {
-  format=format[1]
+                         rows=NULL,cast_types=TRUE,refresh=FALSE,
+                         ...) {
+  format="csv"
   marker=digest(paste0(c(dataset_id,format,where,select,rows,apikey),collapse = "_"), algo = "md5")
   cache_file <- file.path(tempdir(),paste0("CoV_data_",marker, ".rda"))
   if (!refresh & file.exists(cache_file)) {
@@ -166,6 +167,7 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),
   }
   if (cast_types){
     metadata <- get_cov_metadata(dataset_id)
+    geo_column <- metadata %>% filter(.data$type=="geo_shape") %>% pull(.data$name) %>% intersect(names(result))
     integer_columns <- metadata %>% filter(.data$type=="int") %>% pull(.data$name) %>% intersect(names(result))
     numeric_columns <- metadata %>% filter(.data$type=="double") %>% pull(.data$name) %>% intersect(names(result))
     date_columns <- metadata %>% filter(.data$type=="date") %>% pull(.data$name) %>% intersect(names(result))
@@ -173,6 +175,27 @@ get_cov_data <- function(dataset_id,format=c("csv","geojson"),
     result <- result %>%
       mutate_at(integer_columns,as.integer) %>%
       mutate_at(numeric_columns,as.numeric)
+    if (length(geo_column)>0) {
+      result <- tryCatch({
+        geo_column <- geo_column[1]
+        result <- result %>%
+          mutate(...link=as.character(row_number()))
+        geo_result <- result %>%
+          filter(!is.na(!!as.name(geo_column))) %>%
+          mutate(geometry=geojsonsf::geojson_sf(!!as.name(geo_column))$geometry) |>
+          select(.data$...link,.data$geometry)
+
+        result |>
+          left_join(geo_result,by="...link") %>%
+          select(-.data$...link) %>%
+          sf::st_as_sf()
+      }, error=\(e){
+        warning("Error converting geojson to sf, returning as tibble")
+        message(e)
+        result
+      }
+    )}
+
     if (length(date_columns>0)) { ## be more careful here, might break with funny date format
       result <- tryCatch(result %>% mutate_at(date_columns,as.Date), finally = result)
     }

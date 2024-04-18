@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//index.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/404.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//reference/aggregate_cov_data.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//reference/get_cov_data.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//reference/get_cov_metadata.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/articles/Demo.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//reference/list_cov_datasets.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/articles/Isolines.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//reference/search_cov_datasets.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//articles/Demo.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/authors.html</loc>
   </url>
   <url>
-    <loc>https://mountainmath.github.io/VancouvR//articles/Isolines.html</loc>
+    <loc>https://mountainmath.github.io/VancouvR/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR/reference/aggregate_cov_data.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR/reference/get_cov_data.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR/reference/get_cov_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR/reference/list_cov_datasets.html</loc>
+  </url>
+  <url>
+    <loc>https://mountainmath.github.io/VancouvR/reference/search_cov_datasets.html</loc>
   </url>
 </urlset>

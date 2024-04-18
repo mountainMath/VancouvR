@@ -13,6 +13,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
+  warning = FALSE,
   eval = nzchar(Sys.getenv("COMPILE_VIG"))
 )
 ```
@@ -37,31 +38,35 @@ get_cov_metadata("property-tax-report") %>%
   tail(10)
 ```
 
-### Get an overview of land values in RS zones
+### Get an overview of land and building values in RS zones
 ```{r}
 search_cov_datasets("property-tax") %>%
   pull(dataset_id) %>%
   lapply(function(ds)
     aggregate_cov_data(ds,
                        group_by="tax_assessment_year as Year",
-                       where="zoning_district like 'RS-'",
+                       where="zoning_district like 'RS-' or zoning_district like 'R1-1'",
                        select="sum(current_land_value) as Land, sum(current_improvement_value) as Building")) %>% 
   bind_rows() %>%
   mutate(Date=as.Date(paste0(as.integer(Year)-1,"-07-01"))) %>%
   pivot_longer(c("Land","Building")) %>%
   ggplot(aes(x=Year,y=value,color=name,group=name)) +
+  geom_point(shape=21) +
   geom_line() +
   scale_y_continuous(labels=function(x)paste0("$",x/1000000000,"Bn")) +
-  labs(title="City of Vancouver RS zoned land values",color="",y="Aggregate value (nominal)")
+  labs(title="City of Vancouver RS/R1-1 zoned land and building values",
+       x="Tax year", color="", y="Aggregate value (nominal)")
 ```
 
 
 ### Get data for property tax report and property polygons
+When metadata indicates that the data has a spatial componenet the package will automatically return the data in `sf` format. 
+
 ```{r}
 tax_data <- get_cov_data(dataset_id = "property-tax-report",
-                         where="tax_assessment_year='2021'",
+                         where="tax_assessment_year='2024'",
                          select = "current_land_value, land_coordinate as tax_coord")
-property_polygons <- get_cov_data(dataset_id="property-parcel-polygons",format = "geojson") %>%
+property_polygons <- get_cov_data(dataset_id="property-parcel-polygons") %>%
   sf::st_transform(26910)
 ```
 
@@ -76,7 +81,7 @@ plot_data <- property_polygons %>%
 ggplot(plot_data) +
   geom_sf(aes(fill=rlvd),color=NA) +
   scale_fill_viridis_d(option="magma",na.value="darkgrey") +
-  labs(title="July 2020 relative land values",fill="Value per m^2",caption="CoV Open Data") +
+  labs(title="July 2023 relative land values",fill="Value per m^2",caption="CoV Open Data") +
   coord_sf(datum=NA)
 ```
 

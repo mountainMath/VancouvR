@@ -1,3 +1,8 @@
+## VancouvR 0.1.8
+
+### Minor changes
+- automatically determin if a dataset has a spatial component and transform to sf object if it does
+
 ## VancouvR 0.1.7
 
 ### Minor changes

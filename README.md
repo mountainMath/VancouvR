@@ -1,9 +1,9 @@
 # VancouvR
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/mountainMath/VancouvR/workflows/R-CMD-check/badge.svg)](https://github.com/mountainMath/VancouvR/actions)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/VancouvR)](https://cran.r-project.org/package=VancouvR)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/VancouvR)](https://cranlogs.r-pkg.org/badges/VancouvR)
+[![R-CMD-check](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 <a href="https://mountainmath.github.io/VancouvR/index.html"><img src="https://raw.githubusercontent.com/mountainMath/VancouvR/master/images/VancouvR-sticker.png" alt="VancouvR logo" align="right" width = "25%" height = "25%"/></a>
@@ -38,7 +38,7 @@ options(VancouverOpenDataApiKey=<your api key>)
 ```
 will ensure that it is automatically loaded and not exposed when you share your code.
 
-### Example
+### Examples
 
 Get a list of datasets relating to properties
 
@@ -65,3 +65,20 @@ Count the number of cherry trees by neighbourhood.
 aggregate_cov_data("street-trees",where = "common_name LIKE 'CHERRY'", group_by = "neighbourhood_name")
 ```
 
+## Cite **VancouvR**
+
+If you wish to cite VancouvR:
+
+  von Bergmann, J. VancouvR: ccess the 'City of Vancouver' Open Data API. v0.1.8.
+
+
+A BibTeX entry for LaTeX users is
+```
+  @Manual{VancouvR,
+    author = {Jens {von Bergmann}},
+    title = {VancouvR: Access the 'City of Vancouver' Open Data API,
+    year = {2024},
+    note = {R package version 0.1.8},
+    url = {https://mountainmath.github.io/VancouvR/},
+  }
+```

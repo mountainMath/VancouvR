@@ -6,19 +6,17 @@
 \usage{
 get_cov_data(
   dataset_id,
-  format = c("csv", "geojson"),
   select = "*",
   where = NULL,
   apikey = getOption("VancouverOpenDataApiKey"),
   rows = NULL,
   cast_types = TRUE,
-  refresh = FALSE
+  refresh = FALSE,
+  ...
 )
 }
 \arguments{
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}
-
-\item{format}{`csv` or `geojson` are supported at this time (default `csv`)}
 
 \item{select}{select string for fields to return, returns all fields by default.
 It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.}
@@ -33,9 +31,11 @@ It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}
 \item{cast_types}{Logical, use metadata to look up types and type-cast automatically, default `TRUE`}
 
 \item{refresh}{refresh cached data, default `FALSE``}
+
+\item{...}{optional ignored parameters, for compatibility with previous versions that relied on the `format` parameter}
 }
 \value{
-tibble or sf object data table output, depending on the value of the `format` parameter
+tibble or sf object data table output, depending on whether the dataset is spatial and `cast_types` is `TRUE`
 }
 \description{
 Get datasets from Vancouver Open Data Portal
