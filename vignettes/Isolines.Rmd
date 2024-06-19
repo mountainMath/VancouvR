@@ -25,7 +25,7 @@ The City of Vancouver has a lot of different datasets that can easily be visuali
 ```{r}
 ggplot(get_cov_data("elevation-contour-lines-1-metre-contours") ) + 
   geom_sf(aes(color=elevation),size=0.1) + 
-  scale_color_viridis_c(option="inferno",guide=FALSE) + 
+  scale_color_viridis_c(option="inferno",guide='none') + 
   theme_void()
 ```
 
