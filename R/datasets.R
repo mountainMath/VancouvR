@@ -167,37 +167,40 @@ get_cov_data <- function(dataset_id,
   }
   if (cast_types){
     metadata <- get_cov_metadata(dataset_id)
-    geo_column <- metadata %>% filter(.data$type=="geo_shape") %>% pull(.data$name) %>% intersect(names(result))
-    integer_columns <- metadata %>% filter(.data$type=="int") %>% pull(.data$name) %>% intersect(names(result))
-    numeric_columns <- metadata %>% filter(.data$type=="double") %>% pull(.data$name) %>% intersect(names(result))
-    date_columns <- metadata %>% filter(.data$type=="date") %>% pull(.data$name) %>% intersect(names(result))
-    text_columns <- metadata %>% filter(.data$type=="text") %>% pull(.data$name) %>% intersect(names(result))
-    result <- result %>%
-      mutate_at(integer_columns,as.integer) %>%
-      mutate_at(numeric_columns,as.numeric)
-    if (length(geo_column)>0) {
-      result <- tryCatch({
-        geo_column <- geo_column[1]
-        result <- result %>%
-          mutate(...link=as.character(row_number()))
-        geo_result <- result %>%
-          filter(!is.na(!!as.name(geo_column))) %>%
-          mutate(geometry=geojsonsf::geojson_sf(!!as.name(geo_column))$geometry) |>
-          select(.data$...link,.data$geometry)
+    if (nrow(metadata)>0) {
+      geo_column <- metadata %>% filter(.data$type=="geo_shape") %>% pull(.data$name) %>% intersect(names(result))
+      integer_columns <- metadata %>% filter(.data$type=="int") %>% pull(.data$name) %>% intersect(names(result))
+      numeric_columns <- metadata %>% filter(.data$type=="double") %>% pull(.data$name) %>% intersect(names(result))
+      date_columns <- metadata %>% filter(.data$type=="date") %>% pull(.data$name) %>% intersect(names(result))
+      text_columns <- metadata %>% filter(.data$type=="text") %>% pull(.data$name) %>% intersect(names(result))
+      result <- result %>%
+        mutate_at(integer_columns,as.integer) %>%
+        mutate_at(numeric_columns,as.numeric)
+      if (length(geo_column)>0) {
+        result <- tryCatch({
+          geo_column <- geo_column[1]
+          result <- result %>%
+            mutate(...link=as.character(row_number()))
+          geo_result <- result %>%
+            filter(!is.na(!!as.name(geo_column))) %>%
+            mutate(geometry=geojsonsf::geojson_sf(!!as.name(geo_column))$geometry) |>
+            select(.data$...link,.data$geometry)
 
-        result |>
-          left_join(geo_result,by="...link") %>%
-          select(-.data$...link) %>%
-          sf::st_as_sf()
-      }, error=\(e){
-        warning("Error converting geojson to sf, returning as tibble")
-        message(e)
-        result
+          result |>
+            left_join(geo_result,by="...link") %>%
+            select(-.data$...link) %>%
+            sf::st_as_sf()
+        }, error=\(e){
+          warning("Error converting geojson to sf, returning as tibble")
+          message(e)
+          result
+        }
+      )}
+
+
+      if (length(date_columns>0)) { ## be more careful here, might break with funny date format
+        result <- tryCatch(result %>% mutate_at(date_columns,as.Date), finally = result)
       }
-    )}
-
-    if (length(date_columns>0)) { ## be more careful here, might break with funny date format
-      result <- tryCatch(result %>% mutate_at(date_columns,as.Date), finally = result)
     }
   }
   result

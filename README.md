@@ -69,7 +69,7 @@ aggregate_cov_data("street-trees",where = "common_name LIKE 'CHERRY'", group_by 
 
 If you wish to cite VancouvR:
 
-  von Bergmann, J. VancouvR: ccess the 'City of Vancouver' Open Data API. v0.1.8.
+  von Bergmann, J. VancouvR: ccess the 'City of Vancouver' Open Data API. v0.1.9, DOI: 10.32614/CRAN.package.VancouvR.
 
 
 A BibTeX entry for LaTeX users is
@@ -78,7 +78,8 @@ A BibTeX entry for LaTeX users is
     author = {Jens {von Bergmann}},
     title = {VancouvR: Access the 'City of Vancouver' Open Data API,
     year = {2024},
-    note = {R package version 0.1.8},
+    note = {R package version 0.1.9},
+    doi = {10.32614/CRAN.package.VancouvR},
     url = {https://mountainmath.github.io/VancouvR/},
   }
 ```
