@@ -66,7 +66,7 @@ When metadata indicates that the data has a spatial componenet the package will 
 
 ```{r}
 tax_data <- get_cov_data(dataset_id = "property-tax-report",
-                         where="tax_assessment_year='2024'",
+                         where="tax_assessment_year='2026'",
                          select = "current_land_value, land_coordinate as tax_coord")
 property_polygons <- get_cov_data(dataset_id="property-parcel-polygons") |>
   sf::st_transform(26910)
@@ -78,12 +78,13 @@ plot_data <- property_polygons |>
   left_join(tax_data |> group_by(tax_coord) |> summarize(current_land_value=sum(current_land_value)),by="tax_coord") |>
   mutate(rlv=current_land_value/as.numeric(sf::st_area(geometry))) |>
   mutate(rlvd=cut(rlv,breaks=c(-Inf,1000,2000,3000,4000,5000,7500,10000,25000,50000,Inf),
-                  labels=c("<$1k","$1k-$2k","$2k-$3k","$3k-$4k","$4k-$5k","$5k-$7.5k","$7.5k-$10k","$10k-$25k","$25k-$50k",">$50k"),
+                  labels=c("<$1k","$1k-$2k","$2k-$3k","$3k-$4k","$4k-$5k","$5k-$7.5k","$7.5k-$10k",
+                           "$10k-$25k","$25k-$50k",">$50k"),
                   ordered_result = TRUE))
 ggplot(plot_data) +
   geom_sf(aes(fill=rlvd),color=NA) +
   scale_fill_viridis_d(option="magma",na.value="darkgrey") +
-  labs(title="2024 assessment relative land values",fill="Value per m^2",caption="CoV Open Data") +
+  labs(title="2026 assessment relative land values",fill="Value per m^2",caption="CoV Open Data") +
   coord_sf(datum=NA)
 ```
 
