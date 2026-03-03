@@ -21,3 +21,4 @@ fix_meta.sh
 /Meta/
 .DS_Store
 CRAN-SUBMISSION
+.claude/*

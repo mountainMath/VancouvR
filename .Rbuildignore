@@ -15,3 +15,5 @@ card_fix.sh
 ^CRAN-RELEASE$
 ^\.github$
 ^CRAN-SUBMISSION$
+.claude/*
+CLAUDE.md

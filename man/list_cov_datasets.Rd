@@ -2,7 +2,7 @@
 % Please edit documentation in R/datasets.R
 \name{list_cov_datasets}
 \alias{list_cov_datasets}
-\title{Download the CoV open data catalogue}
+\title{List all datasets in the CoV open data catalogue}
 \usage{
 list_cov_datasets(
   trim = TRUE,
@@ -11,22 +11,29 @@ list_cov_datasets(
 )
 }
 \arguments{
-\item{trim}{trim all NA columns, optional, defaul `TRUE`}
+\item{trim}{Remove columns that are entirely `NA`, default `TRUE`}
 
 \item{apikey}{the CoV open data API key, optional}
 
-\item{refresh}{refresh cached data, default `FALSE``}
+\item{refresh}{Bypass the session cache and re-download, default `FALSE`}
 }
 \value{
-tibble format data table output
+A tibble with one row per dataset. The first four columns are always
+  `dataset_id`, `title`, `keyword`, and `search-term`; remaining columns
+  contain catalogue metadata (trimmed to non-empty columns when `trim = TRUE`).
 }
 \description{
-Download the CoV open data catalogue
+Fetches the full City of Vancouver Open Data catalogue and returns it as a
+tibble. Results are cached for the duration of the R session; subsequent
+calls return the cached copy unless `refresh = TRUE`.
 }
 \examples{
-# List and search available datasets
 \dontrun{
 list_cov_datasets()
 }
 
+}
+\seealso{
+[search_cov_datasets()] to filter the catalogue by a search term,
+  [get_cov_data()] to download a specific dataset
 }

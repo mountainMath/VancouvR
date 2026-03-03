@@ -37,7 +37,7 @@ list_cov_datasets <- function(trim = TRUE, apikey=getOption("VancouverOpenDataAp
     result<- result %>%
       set_names(header$hhh) %>%
       mutate(dataset_id=.data$datasetid) %>%
-      select(c(main_cols,setdiff(names(.),main_cols))) %>%
+      select(all_of(c(main_cols,setdiff(names(.),main_cols)))) %>%
       mutate_if(is.character,unqoute_strings)
     saveRDS(result,cache_file)
   }
@@ -140,7 +140,6 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
     r <- content(response)
     result <- r$dataset$fields %>%
       lapply(function(d) {
-        des=d$desciption
         tibble(name=ifelse(is.null(d$name),NA,d$name),
                type=ifelse(is.null(d$type),NA,d$type),
                label=ifelse(is.null(d$label),NA,d$label),
@@ -251,11 +250,11 @@ get_cov_data <- function(dataset_id,
           geo_result <- result %>%
             filter(!is.na(!!as.name(geo_column))) %>%
             mutate(geometry=geojsonsf::geojson_sf(!!as.name(geo_column))$geometry) |>
-            select(.data$...link,.data$geometry)
+            select("...link","geometry")
 
           result |>
             left_join(geo_result,by="...link") %>%
-            select(-.data$...link) %>%
+            select(-"...link") %>%
             sf::st_as_sf()
         }, error=\(e){
           warning("Error converting geojson to sf, returning as tibble")

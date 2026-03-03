@@ -1,3 +1,10 @@
+## VancouvR 0.1.9
+
+### Minor changes
+- better handling of cases where API does not have metadata
+- improved documentation of functions and vignettes
+- unit tests
+
 ## VancouvR 0.1.8
 
 ### Minor changes

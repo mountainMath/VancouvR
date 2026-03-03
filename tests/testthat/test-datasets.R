@@ -1,14 +1,11 @@
 # All tests in this file require a live connection to opendata.vancouver.ca.
-# They are skipped automatically when the host is unreachable.
+# They are skipped automatically on CRAN.
 
-skip_if_cov_offline <- function() {
-  skip_if_offline(host = "opendata.vancouver.ca")
-}
 
 # ---- list_cov_datasets -------------------------------------------------------
 
 test_that("list_cov_datasets returns a tibble with expected columns", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- list_cov_datasets()
   expect_s3_class(result, "tbl_df")
   expect_true(all(c("dataset_id", "title") %in% names(result)))
@@ -16,7 +13,7 @@ test_that("list_cov_datasets returns a tibble with expected columns", {
 })
 
 test_that("list_cov_datasets trim=FALSE keeps at least as many columns as trim=TRUE", {
-  skip_if_cov_offline()
+  skip_on_cran()
   trimmed   <- list_cov_datasets(trim = TRUE,  refresh = TRUE)
   untrimmed <- list_cov_datasets(trim = FALSE, refresh = TRUE)
   expect_gte(ncol(untrimmed), ncol(trimmed))
@@ -25,7 +22,7 @@ test_that("list_cov_datasets trim=FALSE keeps at least as many columns as trim=T
 # ---- search_cov_datasets -----------------------------------------------------
 
 test_that("search_cov_datasets returns matching rows", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- search_cov_datasets("public-trees")
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
@@ -34,14 +31,14 @@ test_that("search_cov_datasets returns matching rows", {
 })
 
 test_that("search_cov_datasets supports regular expressions", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- search_cov_datasets("parking.*(2017|2018|2019)")
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
 })
 
 test_that("search_cov_datasets warns when no datasets match", {
-  skip_if_cov_offline()
+  skip_on_cran()
   expect_warning(
     search_cov_datasets("zzznomatchxxx99"),
     regexp = "No results found"
@@ -51,7 +48,7 @@ test_that("search_cov_datasets warns when no datasets match", {
 # ---- get_cov_metadata --------------------------------------------------------
 
 test_that("get_cov_metadata returns a tibble with the four expected columns", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- get_cov_metadata("public-trees")
   expect_s3_class(result, "tbl_df")
   expect_named(result, c("name", "type", "label", "description"))
@@ -59,7 +56,7 @@ test_that("get_cov_metadata returns a tibble with the four expected columns", {
 })
 
 test_that("get_cov_metadata type column contains known type values", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- get_cov_metadata("public-trees")
   known_types <- c("text", "int", "double", "date", "geo_shape", "geo_point_2d")
   expect_true(any(result$type %in% known_types))
@@ -68,7 +65,7 @@ test_that("get_cov_metadata type column contains known type values", {
 # ---- get_cov_data ------------------------------------------------------------
 
 test_that("get_cov_data returns a tibble for a non-spatial dataset", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- get_cov_data("property-tax-report",
                          where = "tax_assessment_year='2024'",
                          rows = 5)
@@ -77,7 +74,7 @@ test_that("get_cov_data returns a tibble for a non-spatial dataset", {
 })
 
 test_that("get_cov_data rows argument limits result size", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- get_cov_data("property-tax-report",
                          where = "tax_assessment_year='2024'",
                          rows = 3)
@@ -85,7 +82,7 @@ test_that("get_cov_data rows argument limits result size", {
 })
 
 test_that("get_cov_data where argument filters results", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- get_cov_data("public-trees",
                          where = "genus_name = 'ACER'",
                          rows = 10)
@@ -94,14 +91,14 @@ test_that("get_cov_data where argument filters results", {
 })
 
 test_that("get_cov_data returns an sf object for a spatial dataset", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- get_cov_data("property-parcel-polygons", rows = 5)
   expect_s3_class(result, "sf")
   expect_true(!is.null(sf::st_geometry(result)))
 })
 
 test_that("get_cov_data cast_types=FALSE returns only character columns", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- get_cov_data("property-tax-report",
                          where = "tax_assessment_year='2024'",
                          rows = 5,
@@ -112,7 +109,7 @@ test_that("get_cov_data cast_types=FALSE returns only character columns", {
 })
 
 test_that("get_cov_data messages when reading from cache", {
-  skip_if_cov_offline()
+  skip_on_cran()
   get_cov_data("public-trees",
                where = "genus_name = 'ACER'",
                rows = 5,
@@ -128,7 +125,7 @@ test_that("get_cov_data messages when reading from cache", {
 # ---- aggregate_cov_data ------------------------------------------------------
 
 test_that("aggregate_cov_data returns a tibble", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- aggregate_cov_data("public-trees",
                                 where = "common_name LIKE 'CHERRY'",
                                 group_by = "genus_name")
@@ -137,7 +134,7 @@ test_that("aggregate_cov_data returns a tibble", {
 })
 
 test_that("aggregate_cov_data default select produces a 'count' column", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- aggregate_cov_data("public-trees",
                                 where = "common_name LIKE 'CHERRY'",
                                 group_by = "genus_name")
@@ -146,7 +143,7 @@ test_that("aggregate_cov_data default select produces a 'count' column", {
 })
 
 test_that("aggregate_cov_data respects custom select column alias", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- aggregate_cov_data("public-trees",
                                 select = "count(*) as n",
                                 group_by = "genus_name")
@@ -155,7 +152,7 @@ test_that("aggregate_cov_data respects custom select column alias", {
 })
 
 test_that("aggregate_cov_data without group_by returns a single row", {
-  skip_if_cov_offline()
+  skip_on_cran()
   result <- aggregate_cov_data("public-trees",
                                 select = "count(*) as total",
                                 where = "common_name LIKE 'CHERRY'")
@@ -164,7 +161,7 @@ test_that("aggregate_cov_data without group_by returns a single row", {
 })
 
 test_that("aggregate_cov_data messages when reading from cache", {
-  skip_if_cov_offline()
+  skip_on_cran()
   aggregate_cov_data("public-trees", group_by = "genus_name", refresh = TRUE)
   expect_message(
     aggregate_cov_data("public-trees", group_by = "genus_name"),

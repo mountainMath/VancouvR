@@ -50,3 +50,7 @@ pkgdown::build_site()
 - Docs are generated with roxygen2 (`devtools::document()`). Edit comments in `R/datasets.R`; do not edit `man/` or `NAMESPACE` directly.
 - Vignettes are in `vignettes/` (Demo.Rmd, Isolines.Rmd) and built via knitr. They are excluded from CRAN checks (`\dontrun{}` wrappers on examples) to avoid failures when the CoV API is offline.
 - pkgdown site is published at `https://mountainmath.github.io/VancouvR/`.
+
+## Special considerations
+
+All @example code in the package documentation that makes API calls has to be wrapped with `\downtrun{}` to avoid CRAN check failures when the CoV API is offline. This means that examples will not be run during testing, so it is important to have good unit test coverage in `tests/testthat/` to catch issues with API interactions. Tests involving API calls are skipped on CRAN too.

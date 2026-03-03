@@ -2,7 +2,7 @@
 % Please edit documentation in R/datasets.R
 \name{search_cov_datasets}
 \alias{search_cov_datasets}
-\title{Search for CoV open data datasets}
+\title{Search the CoV open data catalogue}
 \usage{
 search_cov_datasets(
   search_term,
@@ -12,24 +12,36 @@ search_cov_datasets(
 )
 }
 \arguments{
-\item{search_term}{grep string to serach through datasets}
+\item{search_term}{A grep-compatible string to search through dataset titles,
+IDs, keywords, and search terms}
 
-\item{trim}{trim all NA columns, optional, defaul `TRUE`}
+\item{trim}{Remove columns that are entirely `NA`, default `TRUE`}
 
 \item{apikey}{the CoV open data API key, optional}
 
-\item{refresh}{refresh cached data, default `FALSE``}
+\item{refresh}{Bypass the session cache and re-download, default `FALSE`}
 }
 \value{
-tibble format data table output
+A tibble with one row per matching dataset, in the same format as
+  [list_cov_datasets()].
 }
 \description{
-Search for CoV open data datasets
+Filters the City of Vancouver Open Data catalogue for datasets whose title,
+dataset ID, keyword, or search-term fields match `search_term` (using
+`grepl()`, so regular expressions are supported). When no exact match is
+found, a fuzzy-match hint list of similarly named datasets is printed.
 }
 \examples{
-# search available datasets relating to trees
 \dontrun{
+# Search using a plain string
 search_cov_datasets("trees")
+
+# Search using a regular expression
+search_cov_datasets("parking.*(2019|2020)")
 }
 
+}
+\seealso{
+[list_cov_datasets()] to retrieve the full catalogue,
+  [get_cov_data()] to download a specific dataset
 }

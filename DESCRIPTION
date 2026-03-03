@@ -9,7 +9,8 @@ Description: Wrapper around the 'City of Vancouver' Open Data API <https://opend
 License: MIT + file LICENSE
 Encoding: UTF-8
 NeedsCompilation: no
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
+Depends: R (>= 4.2)
 Imports: 
     dplyr, 
     httr, 
@@ -26,6 +27,7 @@ Suggests:
     rmarkdown,
     ggplot2,
     lwgeom,
+    scales,
     tidyr,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
