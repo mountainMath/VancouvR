@@ -1,7 +1,7 @@
 ---
 title: "Demo"
-author: "Jens von Bergmann" 
-date: "2019-11-04"
+author: "Jens von Bergmann"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Demo}
@@ -81,7 +81,7 @@ plot_data <- property_polygons %>%
 ggplot(plot_data) +
   geom_sf(aes(fill=rlvd),color=NA) +
   scale_fill_viridis_d(option="magma",na.value="darkgrey") +
-  labs(title="July 2023 relative land values",fill="Value per m^2",caption="CoV Open Data") +
+  labs(title="2024 assessment relative land values",fill="Value per m^2",caption="CoV Open Data") +
   coord_sf(datum=NA)
 ```
 

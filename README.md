@@ -12,6 +12,8 @@
 
 The package caches downloaded data for the duration of the current session, so re-running code blocks will not result in repeated downloads. This speeds up the code, cuts down on unnecessary network traffic and reduces strain on the City of Vancouver Open Data infrastructure.
 
+Datasets with a spatial component are automatically returned as [`sf`](https://r-spatial.github.io/sf/) objects, ready for mapping with `ggplot2::geom_sf()` or any other spatial workflow. The `where` and `select` parameters accept [ODSQL syntax](https://help.opendatasoft.com/apis/ods-search-v2/) for server-side filtering and column selection.
+
 
 ### Reference
 [VancouverOpenData package reference](https://mountainmath.github.io/VancouvR/)
@@ -69,7 +71,7 @@ aggregate_cov_data("street-trees",where = "common_name LIKE 'CHERRY'", group_by 
 
 If you wish to cite VancouvR:
 
-  von Bergmann, J. VancouvR: ccess the 'City of Vancouver' Open Data API. v0.1.9, DOI: 10.32614/CRAN.package.VancouvR.
+  von Bergmann, J. VancouvR: Access the 'City of Vancouver' Open Data API. v0.1.9, DOI: 10.32614/CRAN.package.VancouvR.
 
 
 A BibTeX entry for LaTeX users is
