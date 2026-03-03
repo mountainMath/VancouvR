@@ -21,12 +21,13 @@ Imports:
     geojsonsf,
     tibble,
     purrr
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     ggplot2,
     lwgeom,
-    tidyr
+    tidyr,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/mountainMath/VancouvR, https://mountainmath.github.io/VancouvR/
 BugReports: https://github.com/mountainMath/VancouvR/issues
