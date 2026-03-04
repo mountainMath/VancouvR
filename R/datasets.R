@@ -164,11 +164,11 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
 #' parameters. Re-running the same call does not trigger a second download.
 #' @param dataset_id Dataset id from the Vancouver Open Data catalogue
 #' @param where Filter expression using
-#'   \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax},
+#'   \href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax},
 #'   e.g. `"tax_assessment_year='2024' AND zoning_district LIKE 'RS-'"`.
 #'   Default `NULL` returns all rows.
 #' @param select Column selection / expression string using
-#'   \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax},
+#'   \href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Select-clause}{ODSQL syntax},
 #'   e.g. `"current_land_value, land_coordinate as coord"`. Default `"*"`
 #'   returns all columns.
 #' @param apikey Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`
@@ -281,13 +281,13 @@ get_cov_data <- function(dataset_id,
 #' Results are cached for the duration of the R session.
 #' @param dataset_id Dataset id from the Vancouver Open Data catalogue
 #' @param select Aggregation expression using
-#'   \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.
+#'   \href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Select-clause}{ODSQL syntax}.
 #'   Default `"count(*) as count"`.
 #' @param group_by Grouping expression using
-#'   \href{https://help.opendatasoft.com/apis/ods-search-v2/#group-by-clause}{ODSQL syntax}.
+#'   \href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Group-by-clause}{ODSQL syntax}.
 #'   Default `NULL` (no grouping).
 #' @param where Filter expression using
-#'   \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.
+#'   \href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax}.
 #'   Default `NULL` (no filter).
 #' @param apikey Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`
 #' @param refresh Bypass the session cache and re-download, default `FALSE`

@@ -19,12 +19,12 @@ get_cov_data(
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}
 
 \item{select}{Column selection / expression string using
-\href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax},
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Select-clause}{ODSQL syntax},
 e.g. `"current_land_value, land_coordinate as coord"`. Default `"*"`
 returns all columns.}
 
 \item{where}{Filter expression using
-\href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax},
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax},
 e.g. `"tax_assessment_year='2024' AND zoning_district LIKE 'RS-'"`.
 Default `NULL` returns all rows.}
 

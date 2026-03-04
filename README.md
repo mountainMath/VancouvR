@@ -12,7 +12,7 @@
 
 The package caches downloaded data for the duration of the current session, so re-running code blocks will not result in repeated downloads. This speeds up the code, cuts down on unnecessary network traffic and reduces strain on the City of Vancouver Open Data infrastructure.
 
-Datasets with a spatial component are automatically returned as [`sf`](https://r-spatial.github.io/sf/) objects, ready for mapping with `ggplot2::geom_sf()` or any other spatial workflow. The `where` and `select` parameters accept [ODSQL syntax](https://help.opendatasoft.com/apis/ods-search-v2/) for server-side filtering and column selection.
+Datasets with a spatial component are automatically returned as [`sf`](https://r-spatial.github.io/sf/) objects, ready for mapping with `ggplot2::geom_sf()` or any other spatial workflow. The `where` and `select` parameters accept [ODSQL syntax](https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)) for server-side filtering and column selection.
 
 
 ### Reference

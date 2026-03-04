@@ -17,15 +17,15 @@ aggregate_cov_data(
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}
 
 \item{select}{Aggregation expression using
-\href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Select-clause}{ODSQL syntax}.
 Default `"count(*) as count"`.}
 
 \item{group_by}{Grouping expression using
-\href{https://help.opendatasoft.com/apis/ods-search-v2/#group-by-clause}{ODSQL syntax}.
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Group-by-clause}{ODSQL syntax}.
 Default `NULL` (no grouping).}
 
 \item{where}{Filter expression using
-\href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax}.
 Default `NULL` (no filter).}
 
 \item{apikey}{Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`}
