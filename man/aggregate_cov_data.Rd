@@ -2,7 +2,7 @@
 % Please edit documentation in R/datasets.R
 \name{aggregate_cov_data}
 \alias{aggregate_cov_data}
-\title{Get aggregates from dataset from Vancouver Open Data Portal}
+\title{Aggregate data from the Vancouver Open Data Portal}
 \usage{
 aggregate_cov_data(
   dataset_id,
@@ -16,31 +16,49 @@ aggregate_cov_data(
 \arguments{
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}
 
-\item{select}{select string for aggregation, default is `count(*) as count`
-It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.}
+\item{select}{Aggregation expression using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Select-clause}{ODSQL syntax}.
+Default `"count(*) as count"`.}
 
-\item{group_by}{grouping variables for the query
-It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#group-by-clause}{ODSQL syntax}.}
+\item{group_by}{Grouping expression using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Group-by-clause}{ODSQL syntax}.
+Default `NULL` (no grouping).}
 
-\item{where}{Query parameter to filter data (default `NULL` no filter)
-It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.}
+\item{where}{Filter expression using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax}.
+Default `NULL` (no filter).}
 
 \item{apikey}{Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`}
 
-\item{refresh}{refresh cached data, default `FALSE``}
+\item{refresh}{Bypass the session cache and re-download, default `FALSE`}
 }
 \value{
-tibble format data table output
+A tibble with one row per group, with columns named according to the
+  `select` expression.
 }
 \description{
-Get aggregates from dataset from Vancouver Open Data Portal
+Sends a server-side aggregation query to the CoV Open Data API and returns
+the result as a tibble. Because aggregation is performed by the API, this is
+suitable for summarising large datasets without downloading all records.
+
+Results are cached for the duration of the R session.
 }
 \examples{
-# Count all parking tickets that relate to fire hydrants by ticket status
 \dontrun{
+# Count of each ticket status for fire hydrant infractions
 aggregate_cov_data("parking-tickets-2017-2019",
                    group_by = "status",
                    where = "infractiontext LIKE 'FIRE'")
+
+# Sum land and building values by tax year (server-side, no full download needed)
+aggregate_cov_data("property-tax-report",
+                   select = "sum(current_land_value) as Land,
+                             sum(current_improvement_value) as Building",
+                   group_by = "tax_assessment_year")
 }
 
+}
+\seealso{
+[get_cov_data()] to download full or filtered records,
+  [search_cov_datasets()] to find dataset IDs
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/datasets.R
 \name{get_cov_data}
 \alias{get_cov_data}
-\title{Get datasets from Vancouver Open Data Portal}
+\title{Download a dataset from the Vancouver Open Data Portal}
 \usage{
 get_cov_data(
   dataset_id,
@@ -18,32 +18,61 @@ get_cov_data(
 \arguments{
 \item{dataset_id}{Dataset id from the Vancouver Open Data catalogue}
 
-\item{select}{select string for fields to return, returns all fields by default.
-It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#select-clause}{ODSQL syntax}.}
+\item{select}{Column selection / expression string using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Select-clause}{ODSQL syntax},
+e.g. `"current_land_value, land_coordinate as coord"`. Default `"*"`
+returns all columns.}
 
-\item{where}{Query parameter to filter data (default `NULL` no filter)
-It accepts \href{https://help.opendatasoft.com/apis/ods-search-v2/#where-clause}{ODSQL syntax}.}
+\item{where}{Filter expression using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax},
+e.g. `"tax_assessment_year='2024' AND zoning_district LIKE 'RS-'"`.
+Default `NULL` returns all rows.}
 
 \item{apikey}{Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`}
 
-\item{rows}{Maximum number of rows to return (default `NULL` returns all rows)}
+\item{rows}{Maximum number of rows to return. Default `NULL` returns all rows.}
 
-\item{cast_types}{Logical, use metadata to look up types and type-cast automatically, default `TRUE`}
+\item{cast_types}{Logical; use metadata to auto-cast column types and convert
+spatial datasets to `sf`. Default `TRUE`.}
 
-\item{refresh}{refresh cached data, default `FALSE``}
+\item{refresh}{Bypass the session cache and re-download, default `FALSE`}
 
-\item{...}{optional ignored parameters, for compatibility with previous versions that relied on the `format` parameter}
+\item{...}{Ignored; retained for compatibility with earlier versions}
 }
 \value{
-tibble or sf object data table output, depending on whether the dataset is spatial and `cast_types` is `TRUE`
+A tibble, or an `sf` object when the dataset has a `geo_shape` field
+  and `cast_types = TRUE`.
 }
 \description{
-Get datasets from Vancouver Open Data Portal
+Downloads a dataset and returns it as a tibble or `sf` object. When
+`cast_types = TRUE` (the default), field types are looked up via
+[get_cov_metadata()] and columns are automatically cast to integer, numeric,
+or Date. Datasets containing a `geo_shape` field are returned as an `sf`
+object; if spatial conversion fails a plain tibble is returned with a warning.
+
+Results are cached for the duration of the R session, keyed on all query
+parameters. Re-running the same call does not trigger a second download.
 }
 \examples{
-# Get all parking tickets issued at the 1100 block of Alberni Street between 2017 and 2019
 \dontrun{
-get_cov_data("parking-tickets-2017-2019",where = "block = 1100 AND street = 'ALBERNI ST'")
+# Filtered download: parking tickets on one block
+get_cov_data("parking-tickets-2017-2019",
+             where = "block = 1100 AND street = 'ALBERNI ST'")
+
+# Select specific columns and limit rows (useful for exploration)
+get_cov_data("property-tax-report",
+             select = "tax_assessment_year, current_land_value, zoning_district",
+             where = "tax_assessment_year = '2024'",
+             rows = 100)
+
+# Spatial dataset: returned automatically as an sf object
+property_polygons <- get_cov_data("property-parcel-polygons")
+class(property_polygons)  # "sf" "data.frame"
 }
 
+}
+\seealso{
+[get_cov_metadata()] for field names and types,
+  [aggregate_cov_data()] for server-side aggregation,
+  [search_cov_datasets()] to find dataset IDs
 }

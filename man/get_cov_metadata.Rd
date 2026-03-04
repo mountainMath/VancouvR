@@ -2,7 +2,7 @@
 % Please edit documentation in R/datasets.R
 \name{get_cov_metadata}
 \alias{get_cov_metadata}
-\title{Get metadata for CoV open data dataset}
+\title{Get field-level metadata for a CoV open data dataset}
 \usage{
 get_cov_metadata(
   dataset_id,
@@ -15,18 +15,37 @@ get_cov_metadata(
 
 \item{apikey}{the CoV open data API key, optional}
 
-\item{refresh}{refresh cached data, default `FALSE``}
+\item{refresh}{Bypass the session cache and re-download, default `FALSE`}
 }
 \value{
-tibble format data table output
+A tibble with one row per field and columns:
+  \describe{
+    \item{name}{Field name as used in `where` and `select` queries}
+    \item{type}{API data type (e.g. `"text"`, `"int"`, `"double"`,
+      `"date"`, `"geo_shape"`)}
+    \item{label}{Human-readable display label}
+    \item{description}{Field description, if provided by the portal}
+  }
 }
 \description{
-Get metadata for CoV open data dataset
+Returns a tibble describing each field in the dataset, including its API
+name, data type, display label, and description. Results are cached for the
+duration of the R session.
+
+This function is called internally by [get_cov_data()] when
+`cast_types = TRUE` to determine column types and identify spatial fields.
 }
 \examples{
-# Get the metadata for the street trees dataset
 \dontrun{
+# View all fields in the street trees dataset
 get_cov_metadata("street-trees")
+
+# Find which fields are spatial
+get_cov_metadata("property-parcel-polygons") |>
+  dplyr::filter(type == "geo_shape")
 }
 
+}
+\seealso{
+[get_cov_data()], [list_cov_datasets()]
 }
