@@ -25,7 +25,7 @@ list_cov_datasets <- function(trim = TRUE, apikey=getOption("VancouverOpenDataAp
   } else {
     url="https://opendata.vancouver.ca/api/v2/catalog/exports/csv"
     if (!is.null(apikey)) url <- param_set(url,"apikey",apikey)
-    response <- GET(url)
+    response <- cov_get(url)
     if (response$status_code!="200") {
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))
@@ -132,7 +132,7 @@ get_cov_metadata <- function(dataset_id,apikey=getOption("VancouverOpenDataApiKe
   } else {
     url=paste0("https://opendata.vancouver.ca/api/v2/catalog/datasets/",dataset_id)
     if (!is.null(apikey)) url <- param_set(url,"apikey",apikey)
-    response <- GET(url)
+    response <- cov_get(url)
     if (response$status_code!="200") {
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))
@@ -219,7 +219,7 @@ get_cov_data <- function(dataset_id,
     if (!is.null(select)) url <- param_set(url,"select",url_encode(select))
     if (!is.null(apikey)) url <- param_set(url,"apikey",apikey)
     if (!is.null(rows)) url <- param_set(url,"rows",rows)
-    response <- GET(url)
+    response <- cov_get(url)
     if (response$status_code!="200") {
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))
@@ -325,7 +325,7 @@ aggregate_cov_data <- function(dataset_id,select="count(*) as count",group_by=NU
     if (!is.null(select)) url <- param_set(url,"select",url_encode(select))
     if (!is.null(group_by)) url <- param_set(url,"group_by",url_encode(group_by))
     if (!is.null(apikey)) url <- param_set(url,"apikey",apikey)
-    response <- GET(url)
+    response <- cov_get(url)
     if (response$status_code!="200") {
       warning(content(response))
       stop(paste0("Stopping, returned status code ",response$status_code))

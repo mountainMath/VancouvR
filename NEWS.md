@@ -1,3 +1,11 @@
+## VancouvR 0.1.10
+
+### Bug fixes
+- work around a malformed `content-security-policy` header sent by the open data
+  portal that causes requests to fail with "Stream error in the HTTP/2 framing
+  layer" on systems with a strict `nghttp2` build. Affected requests are now
+  automatically retried over HTTP/1.1.
+
 ## VancouvR 0.1.9
 
 ### Minor changes
