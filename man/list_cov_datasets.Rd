@@ -6,12 +6,29 @@
 \usage{
 list_cov_datasets(
   trim = TRUE,
+  where = NULL,
+  refine = NULL,
+  exclude = NULL,
   apikey = getOption("VancouverOpenDataApiKey"),
   refresh = FALSE
 )
 }
 \arguments{
 \item{trim}{Remove columns that are entirely `NA`, default `TRUE`}
+
+\item{where}{Filter expression applied by the portal, using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax}
+over the catalogue's own fields, e.g. `"search(title, 'tree')"` or
+`"features LIKE 'geo'"`. Default `NULL` returns the whole catalogue.}
+
+\item{refine}{Catalogue facet filter(s) of the form `"facet:value"`, e.g.
+`"theme:Sustainability"`. Values must match the facet exactly; use
+[list_cov_facets()] to discover them. Pass a character vector to apply
+several; multiple values on the same facet are combined with OR, different
+facets with AND. Default `NULL`.}
+
+\item{exclude}{Catalogue facet exclusion(s), in the same `"facet:value"` form
+as `refine`. Default `NULL`.}
 
 \item{apikey}{the CoV open data API key, optional}
 
@@ -21,6 +38,7 @@ list_cov_datasets(
 A tibble with one row per dataset. The first four columns are always
   `dataset_id`, `title`, `keyword`, and `search-term`; remaining columns
   contain catalogue metadata (trimmed to non-empty columns when `trim = TRUE`).
+  Returns `NULL` with a warning if the API cannot be reached.
 }
 \description{
 Fetches the full City of Vancouver Open Data catalogue and returns it as a
@@ -28,12 +46,22 @@ tibble. Results are cached for the duration of the R session; subsequent
 calls return the cached copy unless `refresh = TRUE`.
 }
 \examples{
+\donttest{
+# Only the datasets that carry geographic records
+list_cov_datasets(where = "features LIKE 'geo'")
+
+# Datasets filed under a catalogue theme
+list_cov_datasets(refine = "theme:Sustainability")
+}
+
 \dontrun{
+# The entire catalogue
 list_cov_datasets()
 }
 
 }
 \seealso{
-[search_cov_datasets()] to filter the catalogue by a search term,
+[list_cov_facets()] to discover the values `refine` accepts,
+  [search_cov_datasets()] to filter the catalogue by a search term,
   [get_cov_data()] to download a specific dataset
 }

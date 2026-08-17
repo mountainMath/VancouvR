@@ -9,6 +9,10 @@ aggregate_cov_data(
   select = "count(*) as count",
   group_by = NULL,
   where = NULL,
+  order_by = NULL,
+  refine = NULL,
+  exclude = NULL,
+  limit = NULL,
   apikey = getOption("VancouverOpenDataApiKey"),
   refresh = FALSE
 )
@@ -28,13 +32,27 @@ Default `NULL` (no grouping).}
 \href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause}{ODSQL syntax}.
 Default `NULL` (no filter).}
 
+\item{order_by}{Sort expression using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Order-by-clause}{ODSQL syntax},
+naming an aggregate from `select` or a field from `group_by`, e.g.
+`"count DESC"`. Default `NULL`.}
+
+\item{refine}{Facet filter(s) of the form `"field:value"`; see [get_cov_data()].
+Default `NULL`.}
+
+\item{exclude}{Facet exclusion(s) of the form `"field:value"`. Default `NULL`.}
+
+\item{limit}{Maximum number of groups to return. Default `NULL` returns all
+groups. Ignored when `group_by` is `NULL`, which always yields one row.}
+
 \item{apikey}{Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`}
 
 \item{refresh}{Bypass the session cache and re-download, default `FALSE`}
 }
 \value{
 A tibble with one row per group, with columns named according to the
-  `select` expression.
+  `select` expression. Returns `NULL` with a warning if the API cannot be
+  reached.
 }
 \description{
 Sends a server-side aggregation query to the CoV Open Data API and returns
@@ -42,9 +60,12 @@ the result as a tibble. Because aggregation is performed by the API, this is
 suitable for summarising large datasets without downloading all records.
 
 Results are cached for the duration of the R session.
+
+Grouped queries are answered by the dataset export endpoint and so are not
+subject to a record limit; every group is returned in a single request.
 }
 \examples{
-\dontrun{
+\donttest{
 # Count of each ticket status for fire hydrant infractions
 aggregate_cov_data("parking-tickets-2017-2019",
                    group_by = "status",
@@ -55,6 +76,12 @@ aggregate_cov_data("property-tax-report",
                    select = "sum(current_land_value) as Land,
                              sum(current_improvement_value) as Building",
                    group_by = "tax_assessment_year")
+
+# The ten most common tree genera
+aggregate_cov_data("public-trees",
+                   group_by = "genus_name",
+                   order_by = "count DESC",
+                   limit = 10)
 }
 
 }

@@ -1,0 +1,11 @@
+citHeader("To cite VancouvR in publications use:")
+
+bibentry(
+  bibtype  = "Manual",
+  title    = "VancouvR: Access the 'City of Vancouver' Open Data API",
+  author   = person("Jens", "von Bergmann"),
+  year     = "2026",
+  note     = "R package version 0.1.11",
+  doi      = "10.32614/CRAN.package.VancouvR",
+  url      = "https://mountainmath.github.io/VancouvR/"
+)

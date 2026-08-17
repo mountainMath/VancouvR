@@ -18,3 +18,4 @@ card_fix.sh
 .claude/*
 CLAUDE.md
 ^\.claude$
+^data-raw$

@@ -1,12 +1,12 @@
 Package: VancouvR
 Type: Package
 Title: Access the 'City of Vancouver' Open Data API
-Version: 0.1.10
+Version: 0.1.11
 Authors@R: c(
     person("Jens", "von Bergmann", email = "jens@mountainmath.ca", role = c("aut","cre"))
     )
 Maintainer: Jens von Bergmann <jens@mountainmath.ca>
-Description: Wrapper around the 'City of Vancouver' Open Data API <https://opendata.vancouver.ca/api/v2/console> to simplify and standardize access to 'City of Vancouver' open data. 
+Description: Wrapper around the 'City of Vancouver' Open Data API <https://opendata.vancouver.ca/api-console/explore/v2.1/> to simplify and standardize access to 'City of Vancouver' open data. 
   Functionality to list the data catalogue and access data and geographic records.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -14,9 +14,8 @@ NeedsCompilation: no
 Depends: R (>= 4.2)
 Imports: 
     dplyr, 
-    httr, 
+    httr2 (>= 1.2.0),
     rlang,
-    urltools,
     readr,
     digest,
     sf,
@@ -30,9 +29,10 @@ Suggests:
     lwgeom,
     scales,
     tidyr,
-    testthat (>= 3.0.0),
+    testthat (>= 3.2.0),
     withr
 VignetteBuilder: knitr
 URL: https://github.com/mountainMath/VancouvR, https://mountainmath.github.io/VancouvR/
 BugReports: https://github.com/mountainMath/VancouvR/issues
 Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3

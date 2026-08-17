@@ -26,6 +26,7 @@ A tibble with one row per field and columns:
     \item{label}{Human-readable display label}
     \item{description}{Field description, if provided by the portal}
   }
+  Returns `NULL` with a warning if the API cannot be reached.
 }
 \description{
 Returns a tibble describing each field in the dataset, including its API
@@ -36,10 +37,12 @@ This function is called internally by [get_cov_data()] when
 `cast_types = TRUE` to determine column types and identify spatial fields.
 }
 \examples{
-\dontrun{
-# View all fields in the street trees dataset
-get_cov_metadata("street-trees")
+\donttest{
+# View all fields in the public trees dataset
+get_cov_metadata("public-trees")
+}
 
+\dontrun{
 # Find which fields are spatial
 get_cov_metadata("property-parcel-polygons") |>
   dplyr::filter(type == "geo_shape")
