@@ -1,12 +1,10 @@
-# VancouvR
+# VancouvR <a href="https://mountainmath.github.io/VancouvR/index.html"><img src="man/figures/logo.png" alt="VancouvR logo" align="right" width="25%" height="25%"/></a>
 
 <!-- badges: start -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/VancouvR)](https://cran.r-project.org/package=VancouvR)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/VancouvR)](https://cranlogs.r-pkg.org/badges/VancouvR)
 [![R-CMD-check](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
-
-<a href="https://mountainmath.github.io/VancouvR/index.html"><img src="https://raw.githubusercontent.com/mountainMath/VancouvR/master/images/VancouvR-sticker.png" alt="VancouvR logo" align="right" width = "25%" height = "25%"/></a>
 
 `VancouvR` is an R wrapper around the City of Vancouver Open Data API. It allows transparent and reproducible access to the Vancouver Open Data Portal to facilitate data analysis and sharing of code.
 
@@ -35,7 +33,7 @@ remotes::install_github("mountainmath/VancouvR")
 Smaller datasets can be accessed without an API key, but for larger datasets an API key is required. API keys [are available after registering at the City of Vancouver Open Data Portal](https://opendata.vancouver.ca/signup/). 
 
 Setting the API key in the `.Rprofile` file via
-``` {r}
+``` r
 options(VancouverOpenDataApiKey=<your api key>)
 ```
 will ensure that it is automatically loaded and not exposed when you share your code. The key is sent as an `Authorization` header, so it does not appear in request URLs.
@@ -118,7 +116,7 @@ A BibTeX entry for LaTeX users is
 ```
   @Manual{VancouvR,
     author = {Jens {von Bergmann}},
-    title = {VancouvR: Access the 'City of Vancouver' Open Data API},
+    title = {{VancouvR}: Access the {'City of Vancouver' Open Data API},
     year = {2026},
     note = {R package version 0.1.11},
     doi = {10.32614/CRAN.package.VancouvR},
