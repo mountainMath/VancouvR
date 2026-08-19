@@ -52,3 +52,15 @@ test_that("remove_na_cols puts main_cols before non-main columns", {
   other_positions <- which(!names(result) %in% c("dataset_id", "title", "keyword", "search-term"))
   expect_true(max(main_positions) < min(other_positions))
 })
+
+
+test_that("cov_as_integer keeps values beyond R's integer range", {
+  # The portal's `int` type is 64-bit. Assessed land values overflow int32, and
+  # as.integer() would turn them into NA.
+  big <- c("1000", "3000000000")
+  expect_type(VancouvR:::cov_as_integer(big), "double")
+  expect_equal(VancouvR:::cov_as_integer(big), c(1000, 3e9))
+
+  expect_type(VancouvR:::cov_as_integer(c("1000", "2000")), "integer")
+  expect_equal(VancouvR:::cov_as_integer(c("1000", NA)), c(1000L, NA))
+})

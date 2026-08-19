@@ -22,3 +22,4 @@ fix_meta.sh
 .DS_Store
 CRAN-SUBMISSION
 .claude/*
+!.claude/CLAUDE.md

@@ -20,7 +20,7 @@ library(ggplot2)
 library(VancouvR)
 ```
 
-The City of Vancouver Open Data Portal includes an elevation contour dataset with 1-metre contour lines covering the city. Because the dataset has a `geo_shape` field, `get_cov_data()` automatically returns it as an `sf` object, so it can be passed directly to `geom_sf()` without any additional conversion.
+The City of Vancouver Open Data Portal includes an elevation contour dataset with 1-metre contour lines covering the city. Because the dataset has a `geo_shape` field, `get_cov_data()` downloads it as [FlatGeobuf](https://flatgeobuf.org) and returns an `sf` object with its coordinate reference system already set, so it can be passed directly to `geom_sf()` without any additional conversion.
 
 ```{r}
 contours <- get_cov_data("elevation-contour-lines-1-metre-contours")
@@ -41,5 +41,12 @@ The same pattern works for any spatial dataset on the portal. Use `get_cov_metad
 ```{r}
 get_cov_metadata("elevation-contour-lines-1-metre-contours") |>
   dplyr::filter(type == "geo_shape")
+```
+
+To find spatial datasets in the first place, filter the catalogue on the `geo` feature:
+
+```{r}
+list_cov_datasets(refine = "features:geo") |>
+  dplyr::select(dataset_id, title)
 ```
 

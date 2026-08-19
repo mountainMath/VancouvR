@@ -23,7 +23,8 @@ IDs, keywords, and search terms}
 }
 \value{
 A tibble with one row per matching dataset, in the same format as
-  [list_cov_datasets()].
+  [list_cov_datasets()]. Returns `NULL` with a warning if the API cannot be
+  reached.
 }
 \description{
 Filters the City of Vancouver Open Data catalogue for datasets whose title,
@@ -32,7 +33,7 @@ dataset ID, keyword, or search-term fields match `search_term` (using
 found, a fuzzy-match hint list of similarly named datasets is printed.
 }
 \examples{
-\dontrun{
+\donttest{
 # Search using a plain string
 search_cov_datasets("trees")
 

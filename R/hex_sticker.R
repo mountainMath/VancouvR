@@ -1,7 +1,7 @@
 #' Internal function to generate hex sticker
 #' @keywords internal
 generate_VancouvR_hex_sticker <- function (){
-  # tree_data <- get_cov_data("street-trees",format='geojson') %>%
+  # tree_data <- get_cov_data("public-trees") %>%
   #   mutate(Type=case_when(grepl("FIR$|PINE|SPRUCE|CYPRESS|JUNIPER|REDWOOD|CEDAR|SEQUOIA",common_name)~"Conifer",
   #                         grepl("BEECH|ASH|ASPEN|CATALPA|BIRCH|PEAR|POPLAR|WALNUT|WOOD|ALDER|GINKGO|LINDEN|CHESTNUT|HAWTHORN|HORNBEAM|WILLOW|HEMLOCK|ELM|KATSURA|5721",common_name) ~ "Leaf",
   #                         grepl("CHERRY",common_name)~ "Cherry",
@@ -14,13 +14,13 @@ generate_VancouvR_hex_sticker <- function (){
   # tree_colors <- c(Conifer="#977696",Leaf="#977696",Cherry="#e7a0ae",Fruit="#8e4585",Magnolia="#F8F4FF",
   #                  Maple="#7D0202",Other="#977696",Oak="#765c48",Plum="#977696")
 
-  street_data <- get_cov_data("public-streets",format="geojson")
+  street_data <- get_cov_data("public-streets")
 
-  greenways <- get_cov_data("greenways",format="geojson")
-  parks <- get_cov_data("parks",format="geojson")
-  bikeways <- get_cov_data("bikeways",format="geojson")
+  greenways <- get_cov_data("greenways")
+  parks <- get_cov_data("parks")
+  bikeways <- get_cov_data("bikeways")
 
-  parcels <- get_cov_data("property-parcel-polygons",format="geojson")
+  parcels <- get_cov_data("property-parcel-polygons")
 
   park_parcels <- parcels %>% filter(sf::st_intersects(.,parks %>% sf::st_union(),sparse=FALSE) %>% unlist)
 

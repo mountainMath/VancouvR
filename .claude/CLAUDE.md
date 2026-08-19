@@ -24,7 +24,7 @@ testthat::test_file("tests/testthat/test-datasets.R")
 # Install locally
 devtools::install()
 
-# Build pkgdown site
+# Build pkgdown site (set COMPILE_VIG=1 in the environment to evaluate vignette chunks)
 pkgdown::build_site()
 ```
 
@@ -50,6 +50,10 @@ pkgdown::build_site()
 - Docs are generated with roxygen2 (`devtools::document()`). Edit comments in `R/datasets.R`; do not edit `man/` or `NAMESPACE` directly.
 - Vignettes are in `vignettes/` (Demo.Rmd, Isolines.Rmd) and built via knitr. They are excluded from CRAN checks (`\dontrun{}` wrappers on examples) to avoid failures when the CoV API is offline.
 - pkgdown site is published at `https://mountainmath.github.io/VancouvR/`.
+- This file lives in `.claude/` rather than the package root because pkgdown
+  renders every root-level `.md` file, which published these internal
+  instructions to the public site. Keep it here; `.gitignore` carries a
+  `!.claude/CLAUDE.md` negation so it stays under version control.
 
 ## Special considerations
 

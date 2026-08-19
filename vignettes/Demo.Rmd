@@ -48,6 +48,9 @@ search_cov_datasets("property-tax") |>
                        where="zoning_district like 'RS-' or zoning_district like 'R1-1'",
                        select="sum(current_land_value) as Land, sum(current_improvement_value) as Building")) |> 
   bind_rows() |>
+  # Records with no assessment year come back as their own group; drop them so
+  # the series is purely by year.
+  filter(!is.na(Year)) |>
   mutate(Date=as.Date(paste0(as.integer(Year)-1,"-07-01"))) |>
   pivot_longer(c("Land","Building")) |>
   ggplot(aes(x=Date,y=value,color=name,group=name)) +

@@ -17,3 +17,5 @@ card_fix.sh
 ^CRAN-SUBMISSION$
 .claude/*
 CLAUDE.md
+^\.claude$
+^data-raw$

@@ -1,12 +1,10 @@
-# VancouvR
+# VancouvR <a href="https://mountainmath.github.io/VancouvR/index.html"><img src="man/figures/logo.png" alt="VancouvR logo" align="right" width="25%" height="25%"/></a>
 
 <!-- badges: start -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/VancouvR)](https://cran.r-project.org/package=VancouvR)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/VancouvR)](https://cranlogs.r-pkg.org/badges/VancouvR)
 [![R-CMD-check](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mountainMath/VancouvR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
-
-<a href="https://mountainmath.github.io/VancouvR/index.html"><img src="https://raw.githubusercontent.com/mountainMath/VancouvR/master/images/VancouvR-sticker.png" alt="VancouvR logo" align="right" width = "25%" height = "25%"/></a>
 
 `VancouvR` is an R wrapper around the City of Vancouver Open Data API. It allows transparent and reproducible access to the Vancouver Open Data Portal to facilitate data analysis and sharing of code.
 
@@ -35,10 +33,12 @@ remotes::install_github("mountainmath/VancouvR")
 Smaller datasets can be accessed without an API key, but for larger datasets an API key is required. API keys [are available after registering at the City of Vancouver Open Data Portal](https://opendata.vancouver.ca/signup/). 
 
 Setting the API key in the `.Rprofile` file via
-``` {r}
+``` r
 options(VancouverOpenDataApiKey=<your api key>)
 ```
-will ensure that it is automatically loaded and not exposed when you share your code.
+will ensure that it is automatically loaded and not exposed when you share your code. The key is sent as an `Authorization` header, so it does not appear in request URLs.
+
+The portal enforces a daily request quota, shared across everything using your key. `VancouvR` warns once per session as it runs low, and `get_cov_rate_limit()` reports what is left.
 
 ### Examples
 
@@ -56,31 +56,69 @@ Get the first 10 records of the property tax report for 2019 tax year.
 get_cov_data(dataset_id = "property-tax-report",where="tax_assessment_year='2021'",rows=10)
 ```
 
-Get metadata for the street trees dataset.
+Get metadata for the public trees dataset.
 ``` r
-get_cov_metadata("street-trees")
+get_cov_metadata("public-trees")
 ```
 
-Count the number of cherry trees by neighbourhood.
+Count the number of cherry trees by genus, aggregated server-side.
 
 ``` r
-aggregate_cov_data("street-trees",where = "common_name LIKE 'CHERRY'", group_by = "neighbourhood_name")
+aggregate_cov_data("public-trees", where = "common_name LIKE 'CHERRY'", group_by = "genus_name")
+```
+
+See what values a field takes before filtering on it.
+
+``` r
+get_cov_facets("public-trees", facet = "genus_name")
+```
+
+Filtering, sorting and limiting all happen on the server, so only the rows you
+want are downloaded.
+
+``` r
+get_cov_data("public-trees", refine = "genus_name:ACER", order_by = "height_m DESC", rows = 10)
+```
+
+Browse the catalogue rather than searching it: `list_cov_facets()` shows what
+themes and keywords exist, and `list_cov_datasets()` filters on them.
+
+``` r
+list_cov_facets(facet = "theme")
+list_cov_datasets(refine = "theme:Sustainability")
+```
+
+The `features` facet is worth knowing about — its `geo` value identifies the
+datasets that come back as `sf` objects.
+
+``` r
+list_cov_datasets(refine = "features:geo")
+```
+
+Spatial datasets are downloaded as [FlatGeobuf](https://flatgeobuf.org) and
+returned as `sf`, with the coordinate reference system already set.
+
+``` r
+library(ggplot2)
+
+areas <- get_cov_data("local-area-boundary")
+ggplot(areas) + geom_sf()
 ```
 
 ## Cite **VancouvR**
 
 If you wish to cite VancouvR:
 
-  von Bergmann, J. VancouvR: Access the 'City of Vancouver' Open Data API. v0.1.9, DOI: 10.32614/CRAN.package.VancouvR.
+  von Bergmann, J. VancouvR: Access the 'City of Vancouver' Open Data API. v0.1.11, DOI: 10.32614/CRAN.package.VancouvR.
 
 
 A BibTeX entry for LaTeX users is
 ```
   @Manual{VancouvR,
     author = {Jens {von Bergmann}},
-    title = {VancouvR: Access the 'City of Vancouver' Open Data API,
-    year = {2024},
-    note = {R package version 0.1.9},
+    title = {{VancouvR}: Access the {'City of Vancouver' Open Data API},
+    year = {2026},
+    note = {R package version 0.1.11},
     doi = {10.32614/CRAN.package.VancouvR},
     url = {https://mountainmath.github.io/VancouvR/},
   }

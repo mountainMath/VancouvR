@@ -8,9 +8,14 @@ get_cov_data(
   dataset_id,
   select = "*",
   where = NULL,
+  order_by = NULL,
+  refine = NULL,
+  exclude = NULL,
   apikey = getOption("VancouverOpenDataApiKey"),
   rows = NULL,
   cast_types = TRUE,
+  use_labels = FALSE,
+  timezone = NULL,
   refresh = FALSE,
   ...
 )
@@ -28,46 +33,81 @@ returns all columns.}
 e.g. `"tax_assessment_year='2024' AND zoning_district LIKE 'RS-'"`.
 Default `NULL` returns all rows.}
 
+\item{order_by}{Sort expression using
+\href{https://help.opendatasoft.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Order-by-clause}{ODSQL syntax},
+e.g. `"height_m DESC"`. Default `NULL` leaves the portal's ordering.}
+
+\item{refine}{Facet filter(s) of the form `"field:value"`, e.g.
+`"genus_name:ACER"`. Values must match the facet exactly. Pass a character
+vector to apply several; multiple values on the same field are combined
+with OR, different fields with AND. Default `NULL`.}
+
+\item{exclude}{Facet exclusion(s), in the same `"field:value"` form as
+`refine`. Default `NULL`.}
+
 \item{apikey}{Vancouver Open Data API key, default `getOption("VancouverOpenDataApiKey")`}
 
 \item{rows}{Maximum number of rows to return. Default `NULL` returns all rows.}
 
-\item{cast_types}{Logical; use metadata to auto-cast column types and convert
-spatial datasets to `sf`. Default `TRUE`.}
+\item{cast_types}{Logical; use metadata to auto-cast column types and to
+download spatial datasets as `sf`. Default `TRUE`.}
+
+\item{use_labels}{Logical; name the columns using the human-readable field
+labels instead of the API field names. Default `FALSE`. Setting this to
+`TRUE` disables type casting, as metadata is keyed on the API names.}
+
+\item{timezone}{Timezone used to render datetime fields, e.g. `"America/Vancouver"`.
+Default `NULL` uses the portal default (UTC).}
 
 \item{refresh}{Bypass the session cache and re-download, default `FALSE`}
 
 \item{...}{Ignored; retained for compatibility with earlier versions}
 }
 \value{
-A tibble, or an `sf` object when the dataset has a `geo_shape` field
-  and `cast_types = TRUE`.
+A tibble, or an `sf` object when the dataset has a spatial field and
+  `cast_types = TRUE`. Returns `NULL` with a warning if the API cannot be
+  reached.
 }
 \description{
 Downloads a dataset and returns it as a tibble or `sf` object. When
 `cast_types = TRUE` (the default), field types are looked up via
 [get_cov_metadata()] and columns are automatically cast to integer, numeric,
-or Date. Datasets containing a `geo_shape` field are returned as an `sf`
-object; if spatial conversion fails a plain tibble is returned with a warning.
+or Date.
+
+Datasets whose metadata declares a `geo_shape` or `geo_point_2d` field are
+downloaded as \href{https://flatgeobuf.org}{FlatGeobuf} and returned as an
+`sf` object with its coordinate reference system already set, rather than as
+CSV with the geometry re-parsed from text. The raw geometry fields are not
+part of that export, so such datasets come back with a single `geometry`
+column and no `geom` or `geo_point_2d` column. Setting `cast_types = FALSE`
+or `use_labels = TRUE` downloads the CSV instead, and returns a plain tibble.
 
 Results are cached for the duration of the R session, keyed on all query
 parameters. Re-running the same call does not trigger a second download.
 }
 \examples{
-\dontrun{
-# Filtered download: parking tickets on one block
-get_cov_data("parking-tickets-2017-2019",
-             where = "block = 1100 AND street = 'ALBERNI ST'")
-
+\donttest{
 # Select specific columns and limit rows (useful for exploration)
 get_cov_data("property-tax-report",
              select = "tax_assessment_year, current_land_value, zoning_district",
              where = "tax_assessment_year = '2024'",
-             rows = 100)
+             rows = 10)
+
+# The ten tallest maples, sorted server-side
+get_cov_data("public-trees",
+             refine = "genus_name:ACER",
+             order_by = "height_m DESC",
+             rows = 10)
 
 # Spatial dataset: returned automatically as an sf object
-property_polygons <- get_cov_data("property-parcel-polygons")
+property_polygons <- get_cov_data("property-parcel-polygons", rows = 10)
 class(property_polygons)  # "sf" "data.frame"
+}
+
+\dontrun{
+# Whole filtered datasets can be large, so they are not run here
+get_cov_data("parking-tickets-2017-2019",
+             where = "block = 1100 AND street = 'ALBERNI ST'")
 }
 
 }
